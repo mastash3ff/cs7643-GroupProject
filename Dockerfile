@@ -24,13 +24,26 @@ RUN apt-get update && apt-get install -y ffmpeg libsm6 libxext6 git ninja-build 
 #RUN pip install --no-cache-dir -r requirements/build.txt
 #RUN pip install --no-cache-dir -e .
 
+#RUN apt-get install git-lfs -y
+
 RUN pip install git+https://github.com/vahidk/tfrecord.git
 
 # Pytorch Image Models - bleeding edge
 RUN pip install git+https://github.com/rwightman/pytorch-image-models.git
 
+RUN conda install -c huggingface transformers[torch]
+
+RUN pip install sagemaker
+
+RUN pip install pytorch-lightning
+
+RUN pip install datasets
+
+RUN pip install scikit-image
+
 RUN mkdir /src/
 WORKDIR /src/
 
-RUN git clone https://github.com/facebookresearch/dino /src/
+COPY ./src /src/
+#RUN git clone https://github.com/facebookresearch/dino /src/
 
