@@ -26,20 +26,19 @@
 %%%%%%%%% TITLE
 \title{Project Report : CS 7643}
 
-\author{First Author\\
-Institution1\\
-Institution1 address\\
-{\tt\small firstauthor@i1.org}
+\author{Saheon Kim*, Yuemin Zhou*, and Brandon Sheffield*\\
+Georgia Institute of Technology\\
+{\tt\small \{skim935,yzhou43,bsheffield7\}@gatech.edu}
 % For a paper whose authors are all at the same institution,
 % omit the following lines up until the closing ``}''.
 % Additional authors and addresses can be added with ``\and'',
 % just like the second author.
 % To save space, use either the email address or home page, not both
-\and
-Second Author\\
-Institution2\\
-First line of institution2 address\\
-{\tt\small secondauthor@i2.org}
+%\and
+%Second Author\\
+%Institution2\\
+%First line of institution2 address\\
+%{\tt\small secondauthor@i2.org}
 }
 
 \maketitle
@@ -47,34 +46,157 @@ First line of institution2 address\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-   The ABSTRACT is to be in fully-justified italicized text, at the top
-   of the left-hand column, below the author and affiliation
-   information. Use the word ``Abstract'' as the title, in 12-point
-   Times, boldface type, centered relative to the column, initially
-   capitalized. The abstract is to be in 10-point, single-spaced type.
-   Leave two blank lines after the Abstract, then begin the main text.
-   Look at previous CVPR abstracts to get a feel for style and length. 
-   The abstract section should contain a brief summary of your work that
-   includes the problem statement, proposed solution and results.
+
+   Transformers have disrupted natural language processing and have made their way into computer vision where the Convolutional Neural Network have reigned king for the last decade. In this group project report, we compare dense pixel prediction tasks such as object detection and semantic segmentation performance on the Coco 2017 data set using limited computational resources. We also propose enhancements to the Swin Transformer architecture inspired by recent work done by Meta.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
 \section{Introduction/Background/Motivation}
 
-(5 points) What did you try to do? What problem did you try to solve? Articulate your objectives using absolutely no jargon. 
+\footnote{Random order. Authors made equal contributions.}
+
+(5 points) What did you try to do? What problem did you try to solve? Articulate your objectives using absolutely no jargon.
+
+We want to test the performance of different architectures in the MMdetection model library against each other. They are specifically Faster RCNN, mask RCNN and Swin transformers. We also want to test the performance of some of these models with compressed images. 
+
+
+Transformer architectures\cite{vaswani2017attention} have made breakthroughs in natural language processing (NLP). Inspired by the general learning architecture of transformers, vision transformers were introduced as a competitive architecture for computer vision tasks such as image classification\cite{dosovitskiy2020image} with reliance on large-scale pre-training in 2020. There has been an explosion in transformer-based computer vision models with applications ranging from image retrieval\cite{el2021training}, object detection\cite{liu2021swin}, semantic segmentation\cite{wang2021pyramid}\cite{zhang2021multi}\cite{https://doi.org/10.48550/arxiv.2012.15840}, and video understanding\cite{https://doi.org/10.48550/arxiv.2103.15691}\cite{bertasius2021space}\cite{https://doi.org/10.48550/arxiv.2104.11227} have also shown promising results. Motivated by the success of visual transformers, self-supervised methods using vision transformers have been studied showing better results when self-training is applied as opposed to pre-training\cite{zoph2020rethinking}\cite{https://doi.org/10.48550/arxiv.2104.14294}.
+
+Shortly after the introduction of the ViTs that showed to achieve comparable or even superior performance on image classification tasks, the Google Brain team analyzed how ViTs are solving these tasks and how do their learned representations compare to CNNs\cite{raghu2021vision}. Their findings discovered that ViTs with CLS tokens show strong preservation of spatial information which is useful in other computer vision tasks such as object detection. Since then, transformers have made their way into object detection setting key milestones\cite{arkin2021survey}:
+
+\includegraphics[width=0.8\linewidth]{docs/latex/images/ObjectDetection.png}
+\caption{Fig. 1 Object Detection algorithm milestones}
+
+However vision transformers require vasts amount of data, time, and computational memory due to the quadratic cost of self-attention that is dependent on the number of patches. In object detection and segmentation tasks, a $wxh$ image has a complexity of $O(w^2h^2)$ when the images are high-resolution images. An active area of research is scaling down the amount of data and discovering efficient training for visual transformers\cite{liu2021efficient}\cite{lee2021vision}. Furthermore, the amount of labeled data for supervised learning visual transformers poses a challenge for everyone. This challenges motivates advancements in unlabeled data approaches such as self-supervised learning where there has been many exciting advancements in self-supervised visual representation learning  \cite{chen2020simple} \cite{he2020momentum} \cite{henaff2020dat} \cite{chen2020improved} \cite{caron2020unsupervised} \cite{grill2020bootstrap}.
+
+Inspired by the recent work in self-supervised vision transformers\cite{caron2021emerging}, we demonstrate our experimental results on vision transformers with no labeled data for object detection tasks. Object detection is of importance to advancement in automated driving technology therefore we leverage data sets of images captured from the point of view of vehicles such as Kitti\cite{Geiger2012CVPR}, Nuscenes\cite{nuscenes2019}, and Waymo. How well do these techniques work in constrained computational environments where the data sets are small and the hardware resources limit learning?
 
 (5 points) How is it done today, and what are the limits of current practice?
 
+Faster RCNN as a baseline, Mask RCNN as an improvement and SWIN transformer as a further improvement? 
+
+Convolutional Neural Networks(CNNs) have seen an explosion of success in computer vision tasks. CNNs are known to exhibit inductive biases that make them adept at analyzing images for examples. Such inductive biases include: locality, translation equivariance, and translation invariance. These strengths can also be seen as limitations when compared to a ViT that has a more general type of architecture with fewer inductive biases. One limitation is that a CNN is restricted to viewing local features during the early layers of the network. Global features can only be observed when multiple convolutional layers are stacked. However ViTs have global feature awareness from the beginning. ViTs do have notable downsides such as requiring more data to pre-train on.  Additionally in the context of object detection and instance segmentation, ViTs suffer from the quadratic complexity of its self-attention to the image size. As a result, a general-purpose transformer backbone called the Swin Transformer\cite{liu2021swin} was proposed which constructs hierarchical feature maps and has linear computational complexity to image size. It inherits the advantages of the CNN as it fully considers the size invariance and relation between receptive fields. Limitations of the Swin Transformer is that it does not not have as many inductive biases as the CNN such as translation invariance. This in turns make learning very difficult requiring larger datasets and/or stronger data enhancements to achieve better learning performance.
+
+\includegraphics[width=0.8\linewidth]{docs/latex/images/SwinVsViT.png}
+\caption{}
+
+Since the introduction of the Swin Transformer in 2020, there has been improvements in regards to scaling up it's capacity and resolution\cite{liu2021swinV2}. Additionally, there have been self-supervised learn methods proposed such as MoBY\cite{xie2021moby} which combines MoCo\cite{he2020momentum}\cite{chen2020improved} with BYOL\cite{grill2020bootstrap} and SimMIM\cite{xie2021simmim} where they use the Swin Transformer backbone.
+
+An enhancement we propose to the Swin Transformer is the use of parallel blocks that results in an architecture that has the same number of parameters and computational complexity while being wider and shallower. This insight was realized while surveying ViTs\cite{touvron2022three} and realized not to exist in Swin Transformer implementations as far as we know.
+
+Given a sequence of transformer blocks:
+
+$x^{'}_{i+1} = x_1 + mhsa_l(x_l)$
+
+$x^{'}_{i+1} = x^{'}_{1+1} + ffn_l(x^{'}_{l+1})$
+
+$x^{'}_{i+2} = x_{1+1} + mhsa_{l+1}(x_{l+1})$
+
+$x_{i+2} = x^{'}_{1+2} + mhsa_{l+1}(x^{'}_{l+2})$
+
+these transformer blocks are combined into two parallel operations:
+
+$x_{l+1} = x_{l} + mhsa_{l,1}(x_l) + mhsa_{l,2}(x_l)$
+
+$x_{l+2} = x_{l+1} + ffn_{l,1}(x_l+1) + ffn_{l,2}(x_{l+1})$
+
+The two parallel operations effectively result in twice the amount of processing that is performed in parallel while reducing the number of layers by two.
+
 (5 points) Who cares? If you are successful, what difference will it make? 
 
+An on-going debate in neural architecture design revolves around balancing width and depth. The first successful neural networks on Imagenet were considered deep in 2014 standards\cite{krizhevsky2012imagenet}\cite{simonyan2014very}. With the introduction of ResNets\cite{he2016deep}\cite{he2016identity} optimization with deep layers suffered due to the residual connections. This deep optimization problem motivated researchers to analyze the trade-offs associated with depth and width\cite{ding2021repvgg}\cite{huang2016deep}\cite{zagoruyko2016wide}. 
+
+There are a number of published works interested in shallower neural networks\cite{goyal2021non}\cite{zagoruyko2016wide} for reasons such as lower latency to easier optimization. One of the simple proposed methods advocates parallel vision transformers\cite{touvron2022three} that takes a sequential architecture and reorganizes the blocks by pairs. The overall result is an architecture that is wider and shallower which is an effective design for more parallel processing, easing optimization, and the reduction of latency dependent on the implementation.
+
+With the rise of attention-based neural networks, wider architectures is once again being revisited\cite{goyal2021non}. In this work "Non-deep Networks", an architecture with several parallel branches is proposed that leads to more complex design. In the work, "Three things everyone should know about Vision Transformers", the authors propose three methods for ViTs that are much simpler and flexible alternative methods: parallel blocks, fine-tuning, patch pre-processing\cite{touvron2022three}. 
+
+Here we illustrate the sequential then proposed parallel block methods for ViTs. Given a sequence of transformer blocks:
+
+$x^{'}_{i+1} = x_1 + mhsa_l(x_l)$
+
+$x^{'}_{i+1} = x^{'}_{1+1} + ffn_l(x^{'}_{l+1})$
+
+$x^{'}_{i+2} = x_{1+1} + mhsa_{l+1}(x_{l+1})$
+
+$x_{i+2} = x^{'}_{1+2} + mhsa_{l+1}(x^{'}_{l+2})$
+
+The original authors proposed the following parallel transformer blocks:
+
+$x_{l+1} = x_{l} + mhsa_{l,1}(x_l) + mhsa_{l,2}(x_l)$
+
+$x_{l+2} = x_{l+1} + ffn_{l,1}(x_l+1) + ffn_{l,2}(x_{l+1})$
+
+\includegraphics[width=0.8\linewidth]{docs/latex/images/MHSA-Original.png}
+\caption{Top - Original sequential attention blocks. Bottom - parallel attention blocks.}
+
+TODO insert results they found from more breadth than depth
+
+The Swin Transformer is notably a variant of the original ViT therefore there are design changes to consider. For one, the Swin Transformer introduces the ideas of using the regular and shifted windows for computing attention which is not found in classic ViTs. The use of these windows avoids quadratic complexity of global attention with respect to the number of tokens as it would require an intractable amount of tokens for dense prediction tasks as well as computing on high-resolution images. The equations for computing these two windows are as followed:
+
+$\omega(MSA) = 4hwC^2 + 2(hw)^{2}C,$
+
+$\omega(W-MSA) = 4hwC^2 + 2M^{2}hwC,$
+
+These windows can now be placed into the Swin Transformer blocks:
+
+TODO: Fix equations
+
+$z^{l} = W-MSA (LN(z^{l-1})) + z^{l-1}$
+
+$z^{l} = MLP (LN(z^{l})) + z^{l}$
+
+$z^{l+1} = W-MSA (LN(z^{l-1})) + z^{l-1}$
+
+$z^{l+1} = MLP (LN(z^{l+1})) + z^{l+1}$
+
+The insight of parallel blocks can be adapted to Swin Transformers\cite{liu2021swin} which is a variant of ViTs. The original Swin Transformer two block layout is defined as:
+
+TODO: Fix equations
+
+$x^{'}_{i+1} = x_1 + mhsa_l(x_l)$
+
+$x^{'}_{i+1} = x^{'}_{1+1} + ffn_l(x^{'}_{l+1})$
+
+$x^{'}_{i+2} = x_{1+1} + mhsa_{l+1}(x_{l+1})$
+
+$x_{i+2} = x^{'}_{1+2} + mhsa_{l+1}(x^{'}_{l+2})$
+
+It can be observed that these two Swin Transformer blocks can also be placed in parallel fashion.
+
+TODO: Fix equations
+
+$x_{l+1} = x_{l} + mhsa_{l,1}(x_l) + mhsa_{l,2}(x_l)$
+
+$x_{l+2} = x_{l+1} + ffn_{l,1}(x_l+1) + ffn_{l,2}(x_{l+1})$
+
+\includegraphics[width=0.8\linewidth]{docs/latex/images/MSA-Swin.png}
+\caption{}
+
 (5 points) What data did you use? Provide details about your data, specifically choose the most important aspects of your data mentioned \href{https://arxiv.org/abs/1803.09010}{here}. You don’t have to choose all of them, just the most relevant.
+
+Due to computational limitations and limitations of the models we chose we eventually settled on a truncated version of the coco dataset. This dataset has the bbox annotations and the mask annotations needed for fast RCNN and mask RCNN. This data was further truncated to 1977 images for train, 500 for test, and 494 for validation. These images were all taken from the original training data set. This drastic truncation is needed due to our limited time and computational hardware.  
+
+Also for coco we focused on one class classification because the classes in the dataset was quite imbalanced. 
+
+Insert Coco17 details here
+
+\includegraphics[width=0.8\linewidth]{docs/latex/images/coco17_train_trunc.png}
+\caption{}
+
+\includegraphics[width=0.8\linewidth]{docs/latex/images/coco17_val_trunc.png}
+\caption{}
+
 %-------------------------------------------------------------------------
 %------------------------------------------------------------------------
 \section{Approach}
 
-(10 points) What did you do exactly? How did you solve the problem? Why did you think it would be successful? Is anything new in your approach? 
+(10 points) What did you do exactly? How did you solve the problem? Why did you think it would be successful? Is anything new in your approach?
 
-(5 points) What problems did you anticipate? What problems did you encounter? Did the very first thing you tried work? 
+We demonstrate CNN and Transformer performance on dense pixel prediction tasks independently on the COCO 2017 dataset. A new approach is proposed at the end for Swin Transformers. Experimental results are not provided because of computational constraints.
+
+(5 points) What problems did you anticipate? What problems did you encounter? Did the very first thing you tried work?
+
+The types of architectures that we experimented with and analyzed have an inherit difficulty in requiring lots of hardware resources such as storage and GPUs.
 
 \textbf{Important: Mention any code repositories (with citations) or other sources that you used, and specifically what changes you made to them for your project. }
 
@@ -82,27 +204,49 @@ First line of institution2 address\\
 
 (10 points) How did you measure success? What experiments were used? What were the results, both quantitative and qualitative? Did you succeed? Did you fail? Why? Justify your reasons with arguments supported by evidence and data.
 
+TODO detail neural network architecture designs
+Faster RCNN
+The first layer is a CNN layer from resnet. It had four stages. The results of this layer is connected to a neck which is a Feature Pyramid Network. 
+
+
+TODO comparison of results from coco17
+
+TODO metrics. Examples below
+
+https://github.com/open-mmlab/mmdetection/blob/master/docs/en/useful_tools.md
+
+Metrics: FPS Benchmark, Robust Detection
+
+Confusion Matrix
+
+Model Complexity in FLOPs and params
+
+Error Analysis
+
+Results Analysis
+
+Log Analysis
+
+
 \textbf{Important: This section should be rigorous and thorough. Present detailed information about decision you made, why you made them, and any evidence/experimentation to back them up. This is especially true if you leveraged existing architectures, pre-trained models, and code (i.e. do not just show results of fine-tuning a pre-trained model without any analysis, claims/evidence, and conclusions, as that tends to not make a strong project). }
+
+\section{Experiences}
+
+
+\subsection{Challenges}
+
+We first proposed a group project on detecting 3D objects from point cloud data. It was obvious to us that the topic was a hot research area with the motivation of self-driving applications at the wheel. However, once the team became hands-on with the point cloud data, it became apparent that interprability and specialized tools required to interpret sparse point cloud data was not as natural as typical camera images. We then changed topics to more relatable material covered in class such as CNNs and transforms from NLP while staying consistent with object detection.
+
+\subsection{New Challenges}
+
+Whether processing point cloud data or camera images with recent methods, computational resources such as access to enterprise GPUs would always prove to be a challenge. Training on large datasets requires large batch sizes affecting training time and model performance.
+
+\subsection{Team Achievements}
+
+Although the computational resources were out of reach for the team using Colab and local GPU resources, we effectively learned about bleeding edge research topics in computer vision that are actively being improved and published on. For example, ViTs have a new workshop at CVPR 2022 since their introduction in 2020. Also the Swin Transformer won the ICCV 2021 best paper award. There has also been a published Swin Transformer v2 and complementary SimMIM that have been accepted for ICCV 2022. We see this exposure as an advantage for collaboration and future work with prospective research teams from the private and public sectors.
 
 %-------------------------------------------------------------------------
 \section{Other Sections}
-
-\begin{table*}
-\begin{center}
-\begin{tabular}{|l|c|p{8cm}|}
-\hline
-Student Name & Contributed Aspects & Details \\
-\hline\hline
-Team Member 1 & Data Creation and Implementation & Scraped the dataset for this project and trained the CNN of the encoder. Implemented attention mechanism to improve results. \\
-Team Member 2 & Implementation and Analysis & Trained the LSTM of the encoder and analyzed the results. Analyzed effect of number of nodes in hidden state.  Implemented Convolutional LSTM. \\
-\hline
-\end{tabular}
-\end{center}
-\caption{Contributions of team members.}
-\label{tab:contributions}
-\end{table*}
-
-
 
 You are welcome to introduce additional sections or subsections, if required, to address the following questions in detail. 
 
@@ -129,302 +273,42 @@ What existing code or models did you start with and what did those starting poin
 
 Briefly discuss potential future work that the research community could focus on to make improvements in the direction of your project's topic.
 
+\section{Future Work}
+
+Transformers in computer vision is a hot research topic. As of 03/02/2022, the Swin Transformer v2\cite{liu2021swinV2} and SimMIM\cite{xie2021simmim} was accepted by CVRP 2022. The Swin Transformer v2 coupled with SimMIm which is a self-supervised pre-training approached based on masked image model, requires using 40x less labelled data than that of previous billion-scale models based on JFT-3B\cite{dai2021coatnet}\cite{riquelme2021scaling}\cite{https://doi.org/10.48550/arxiv.2106.04560}.
 
 %-------------------------------------------------------------------------
 
 \section{Work Division}
 
-Please add a section on the delegation of work among team members at the end of the report, in the form of a table and paragraph description. This and references do \textbf{NOT} count towards your page limit. An example has been provided in Table \ref{tab:contributions}.
-
-\newpage
-\newpage
-\section{Miscellaneous Information}
-
-The rest of the information in this format template has been adapted from CVPR 2020 and provides guidelines on the lower-level specifications regarding the paper's format.
-
-\subsection{Language}
-
-All manuscripts must be in English.
-
-
-\subsection{Paper length}
-Papers, excluding the references section,
-must be no longer than six pages in length. The references section
-will not be included in the page count, and there is no limit on the
-length of the references section. For example, a paper of six pages
-with two pages of references would have a total length of 8 pages.
-
-%-------------------------------------------------------------------------
-\subsection{The ruler}
-The \LaTeX\ style defines a printed ruler which should be present in the
-version submitted for review.  The ruler is provided in order that
-reviewers may comment on particular lines in the paper without
-circumlocution.  If you are preparing a document using a non-\LaTeX\
-document preparation system, please arrange for an equivalent ruler to
-appear on the final output pages.  The presence or absence of the ruler
-should not change the appearance of any other content on the page.  The
-camera ready copy should not contain a ruler. (\LaTeX\ users may uncomment
-the \verb'\cvprfinalcopy' command in the document preamble.)  Reviewers:
-note that the ruler measurements do not align well with lines in the paper
---- this turns out to be very difficult to do well when the paper contains
-many figures and equations, and, when done, looks ugly.  Just use fractional
-references (e.g.\ this line is $095.5$), although in most cases one would
-expect that the approximate location will be adequate.
-
-\subsection{Mathematics}
-
-Please number all of your sections and displayed equations.  It is
-important for readers to be able to refer to any particular equation.  Just
-because you didn't refer to it in the text doesn't mean some future reader
-might not need to refer to it.  It is cumbersome to have to use
-circumlocutions like ``the equation second from the top of page 3 column
-1''.  (Note that the ruler will not be present in the final copy, so is not
-an alternative to equation numbers).  All authors will benefit from reading
-Mermin's description of how to write mathematics:
-\url{http://www.pamitc.org/documents/mermin.pdf}.
-
-Finally, you may feel you need to tell the reader that more details can be
-found elsewhere, and refer them to a technical report.  For conference
-submissions, the paper must stand on its own, and not {\em require} the
-reviewer to go to a techreport for further details.  Thus, you may say in
-the body of the paper ``further details may be found
-in~\cite{Authors14b}''.  Then submit the techreport as additional material.
-Again, you may not assume the reviewers will read this material.
-
-Sometimes your paper is about a problem which you tested using a tool which
-is widely known to be restricted to a single institution.  For example,
-let's say it's 1969, you have solved a key problem on the Apollo lander,
-and you believe that the CVPR70 audience would like to hear about your
-solution.  The work is a development of your celebrated 1968 paper entitled
-``Zero-g frobnication: How being the only people in the world with access to
-the Apollo lander source code makes us a wow at parties'', by Zeus \etal.
-
-You can handle this paper like any other.  Don't write ``We show how to
-improve our previous work [Anonymous, 1968].  This time we tested the
-algorithm on a lunar lander [name of lander removed for blind review]''.
-That would be silly, and would immediately identify the authors. Instead
-write the following:
-\begin{quotation}
-\noindent
-   We describe a system for zero-g frobnication.  This
-   system is new because it handles the following cases:
-   A, B.  Previous systems [Zeus et al. 1968] didn't
-   handle case B properly.  Ours handles it by including
-   a foo term in the bar integral.
-
-   ...
-
-   The proposed system was integrated with the Apollo
-   lunar lander, and went all the way to the moon, don't
-   you know.  It displayed the following behaviours
-   which show how well we solved cases A and B: ...
-\end{quotation}
-As you can see, the above text follows standard scientific convention,
-reads better than the first version, and does not explicitly name you as
-the authors.  A reviewer might think it likely that the new paper was
-written by Zeus \etal, but cannot make any decision based on that guess.
-He or she would have to be sure that no other authors could have been
-contracted to solve problem B.
-\medskip
-
-\noindent
-FAQ\medskip\\
-{\bf Q:} Are acknowledgements OK?\\
-{\bf A:} No.  Leave them for the final copy.\medskip\\
-{\bf Q:} How do I cite my results reported in open challenges?
-{\bf A:} To conform with the double blind review policy, you can report results of other challenge participants together with your results in your paper. For your results, however, you should not identify yourself and should not mention your participation in the challenge. Instead present your results referring to the method proposed in your paper and draw conclusions based on the experimental comparison to other results.\medskip\\
-
-\begin{figure}[t]
+\begin{table*}
 \begin{center}
-\fbox{\rule{0pt}{2in} \rule{0.9\linewidth}{0pt}}
-   %\includegraphics[width=0.8\linewidth]{egfigure.eps}
-\end{center}
-   \caption{Example of caption.  It is set in Roman so that mathematics
-   (always set in Roman: $B \sin A = A \sin B$) may be included without an
-   ugly clash.}
-\label{fig:long}
-\label{fig:onecol}
-\end{figure}
-
-\subsection{Miscellaneous}
-
-\noindent
-Compare the following:\\
-\begin{tabular}{ll}
- \verb'$conf_a$' &  $conf_a$ \\
- \verb'$\mathit{conf}_a$' & $\mathit{conf}_a$
-\end{tabular}\\
-See The \TeX book, p165.
-
-The space after \eg, meaning ``for example'', should not be a
-sentence-ending space. So \eg is correct, {\em e.g.} is not.  The provided
-\verb'\eg' macro takes care of this.
-
-When citing a multi-author paper, you may save space by using ``et alia'',
-shortened to ``\etal'' (not ``{\em et.\ al.}'' as ``{\em et}'' is a complete word.)
-However, use it only when there are three or more authors.  Thus, the
-following is correct: ``
-   Frobnication has been trendy lately.
-   It was introduced by Alpher~\cite{Alpher02}, and subsequently developed by
-   Alpher and Fotheringham-Smythe~\cite{Alpher03}, and Alpher \etal~\cite{Alpher04}.''
-
-This is incorrect: ``... subsequently developed by Alpher \etal~\cite{Alpher03} ...''
-because reference~\cite{Alpher03} has just two authors.  If you use the
-\verb'\etal' macro provided, then you need not worry about double periods
-when used at the end of a sentence as in Alpher \etal.
-
-For this citation style, keep multiple citations in numerical (not
-chronological) order, so prefer \cite{Alpher03,Alpher02,Authors14} to
-\cite{Alpher02,Alpher03,Authors14}.
-
-
-\begin{figure*}
-\begin{center}
-\fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
-\end{center}
-   \caption{Example of a short caption, which should be centered.}
-\label{fig:short}
-\end{figure*}
-
-%------------------------------------------------------------------------
-\subsection{Formatting your paper}
-
-All text must be in a two-column format. The total allowable width of the
-text area is $6\frac78$ inches (17.5 cm) wide by $8\frac78$ inches (22.54
-cm) high. Columns are to be $3\frac14$ inches (8.25 cm) wide, with a
-$\frac{5}{16}$ inch (0.8 cm) space between them. The main title (on the
-first page) should begin 1.0 inch (2.54 cm) from the top edge of the
-page. The second and following pages should begin 1.0 inch (2.54 cm) from
-the top edge. On all pages, the bottom margin should be 1-1/8 inches (2.86
-cm) from the bottom edge of the page for $8.5 \times 11$-inch paper; for A4
-paper, approximately 1-5/8 inches (4.13 cm) from the bottom edge of the
-page.
-
-%-------------------------------------------------------------------------
-\subsection{Margins and page numbering}
-
-All printed material, including text, illustrations, and charts, must be kept
-within a print area 6-7/8 inches (17.5 cm) wide by 8-7/8 inches (22.54 cm)
-high.
-
-
-
-%-------------------------------------------------------------------------
-\subsection{Type-style and fonts}
-
-Wherever Times is specified, Times Roman may also be used. If neither is
-available on your word processor, please use the font closest in
-appearance to Times to which you have access.
-
-MAIN TITLE. Center the title 1-3/8 inches (3.49 cm) from the top edge of
-the first page. The title should be in Times 14-point, boldface type.
-Capitalize the first letter of nouns, pronouns, verbs, adjectives, and
-adverbs; do not capitalize articles, coordinate conjunctions, or
-prepositions (unless the title begins with such a word). Leave two blank
-lines after the title.
-
-AUTHOR NAME(s) and AFFILIATION(s) are to be centered beneath the title
-and printed in Times 12-point, non-boldface type. This information is to
-be followed by two blank lines.
-
-The ABSTRACT and MAIN TEXT are to be in a two-column format.
-
-MAIN TEXT. Type main text in 10-point Times, single-spaced. Do NOT use
-double-spacing. All paragraphs should be indented 1 pica (approx. 1/6
-inch or 0.422 cm). Make sure your text is fully justified---that is,
-flush left and flush right. Please do not place any additional blank
-lines between paragraphs.
-
-Figure and table captions should be 9-point Roman type as in
-Figures~\ref{fig:onecol} and~\ref{fig:short}.  Short captions should be centred.
-
-\noindent Callouts should be 9-point Helvetica, non-boldface type.
-Initially capitalize only the first word of section titles and first-,
-second-, and third-order headings.
-
-FIRST-ORDER HEADINGS. (For example, {\large \bf 1. Introduction})
-should be Times 12-point boldface, initially capitalized, flush left,
-with one blank line before, and one blank line after.
-
-SECOND-ORDER HEADINGS. (For example, { \bf 1.1. Database elements})
-should be Times 11-point boldface, initially capitalized, flush left,
-with one blank line before, and one after. If you require a third-order
-heading (we discourage it), use 10-point Times, boldface, initially
-capitalized, flush left, preceded by one blank line, followed by a period
-and your text on the same line.
-
-%-------------------------------------------------------------------------
-\subsection{Footnotes}
-
-Please use footnotes\footnote {This is what a footnote looks like.  It
-often distracts the reader from the main flow of the argument.} sparingly.
-Indeed, try to avoid footnotes altogether and include necessary peripheral
-observations in
-the text (within parentheses, if you prefer, as in this sentence).  If you
-wish to use a footnote, place it at the bottom of the column on the page on
-which it is referenced. Use Times 8-point type, single-spaced.
-
-
-%-------------------------------------------------------------------------
-\subsection{References}
-
-List and number all bibliographical references in 9-point Times,
-single-spaced, at the end of your paper. When referenced in the text,
-enclose the citation number in square brackets, for
-example~\cite{Authors14}.  Where appropriate, include the name(s) of
-editors of referenced books.
-
-\begin{table}
-\begin{center}
-\begin{tabular}{|l|c|}
+\begin{tabular}{|l|c|p{8cm}|}
 \hline
-Method & Frobnability \\
+Student Name & Contributed Aspects & Details \\
 \hline\hline
-Theirs & Frumpy \\
-Yours & Frobbly \\
-Ours & Makes one's heart Frob\\
+Brandon Sheffield & Implementation and Analysis & Trained the Swin Transformer. Implemented parallel blocks to improve results. \\
+Saheon Kim & Implementation and Analysis & Trained the  \\
+Yuemin Zhou & Implementation and Analysis & Trained the \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Results.   Ours is better.}
-\end{table}
+\caption{Contributions of team members.}
+\label{tab:contributions}
+\end{table*}
 
-%-------------------------------------------------------------------------
-\subsection{Illustrations, graphs, and photographs}
-
-All graphics should be centered.  Please ensure that any point you wish to
-make is resolvable in a printed copy of the paper.  Resize fonts in figures
-to match the font in the body text, and choose line widths which render
-effectively in print.  Many readers (and reviewers), even of an electronic
-copy, will choose to print your paper in order to read it.  You cannot
-insist that they do otherwise, and therefore must not assume that they can
-zoom in to see tiny details on a graphic.
-
-When placing figures in \LaTeX, it's almost always best to use
-\verb+\includegraphics+, and to specify the  figure width as a multiple of
-the line width as in the example below
-{\small\begin{verbatim}
-   \usepackage[dvips]{graphicx} ...
-   \includegraphics[width=0.8\linewidth]
-                   {myfile.eps}
-\end{verbatim}
-}
-
-
-%-------------------------------------------------------------------------
-\subsection{Color}
-
-Please refer to the author guidelines on the CVPR 2020 web page for a discussion
-of the use of color in your document.
-
-%------------------------------------------------------------------------
-
-%-------------------------------------------------------------------------
+\section{Appendices}
+\subsection{Code Repositories}
+https://github.com/open-mmlab/mmdetection
+https://github.com/mastash3ff/cs7643-GroupProject
 
 
 {\small
 \bibliographystyle{ieee_fullname}
 \bibliography{egbib}
 }
+Ren, Shaoqing, et al. “Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks.” Arxiv.org, 6 Jan. 2016, https://arxiv.org/pdf/1506.01497.pdf. 
+
+Lin, Tsung-Yi, et al. “Feature Pyramid Networks for Object Detection.” ArXiv.org, 19 Apr. 2017, https://arxiv.org/abs/1612.03144. 
 
 \end{document}
