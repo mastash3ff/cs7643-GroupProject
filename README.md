@@ -9,3 +9,11 @@ Contains experiments used for establishing baseline performance and fine-tuned m
 ## Configurations
 
 Files used to produced trained and fine-tuned models can be found in the configs folder.
+
+## Team Member Code
+
+Under src/ folder
+
+Brandon 
+Saheon
+Yuemin
