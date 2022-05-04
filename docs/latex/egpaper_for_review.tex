@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{comment}
 \usepackage{booktabs,array}
+\usepackage{float}
 
 
 % Include other packages here, before hyperref.
@@ -27,7 +28,7 @@
 \begin{document}
 
 %%%%%%%%% TITLE
-\title{Analysis of Dense Pixel Prediction Project Report : CS 7643}
+\title{Analysis of Dense Pixel Prediction Tasks Project Report : CS 7643}
 
 \author{Yuemin Zhou, Brandon Sheffield, and Saheon Kim \\
 Georgia Institute of Technology\\
@@ -49,64 +50,70 @@ Georgia Institute of Technology\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-   In this group project report, we analyze dense pixel prediction performance such as object detection and semantic segmentation performance on a subset of the COCO 2017 dataset using limited computational resources. We distribute experiments among team members using distinct deep neural network architectures and collectively analyze the results. Future work proposes an architectural enhancement inspired by recent work done by Meta Research.
+   In this group project report, we analyze dense pixel prediction performance such as object detection and semantic segmentation performance on a subset of the COCO 2017 data set using limited computational resources. We distribute experiments among team members using distinct deep neural network architectures and collectively analyze the results. Future work proposes an architectural enhancement inspired by recent work done by Meta Research.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
-\section{Introduction}
+\section{Introduction/Background/Motivation}
 
 %(5 points) What did you try to do? What problem did you try to solve? Articulate your objectives using absolutely no jargon.
 
-The underlying motivation behind this project for the team is to gain practical experience with handling 'large' datasets, modern deep neural network architectures, popular frameworks, and build up intuition through experimental results and analysis. The tasks we decided to focus on are common in dense prediction tasks\cite{vandenhende2021multi} found in computer vision such as object detection\cite{zaidi2022survey} and semantic segmentation\cite{lateef2019survey}. The object detection task involves identifying a particular class in an image and drawing a bounding box around it. The semantic segmentation task involves pixel level identification of similar objects as a single class.
+The underlying motivation behind this project for the team is to gain practical experience with handling 'large' data sets, modern deep neural network architectures, popular frameworks, and build up intuition through experimental results and analysis. The tasks we decided to focus on are common in dense prediction tasks\cite{vandenhende2021multi} found in computer vision such as object detection\cite{zaidi2022survey} and semantic segmentation\cite{lateef2019survey}. The object detection task involves identifying a particular class in an image and drawing a bounding box around it. The semantic segmentation task involves pixel level identification of similar objects as a single class.
 
-To equally distribute contributions among the team, we each chose a deep neural architecture that is relevant to the tasks of object detection and semantic segmentation. Also a common framework is used among the team where each team member would have access to common building blocks, tools for analysis, and similar pipelines for training and testing models. This early decision would prove beneficial for assisting one another in troubleshooting and comparing methods. We leveraged the popular MMDetection\cite{mmdetection} toolbox. Further details on deep learning frameworks, existing code, source code for experiments, and models are detailed in the Appendix section \ref{existingCodeSection}.
+To equally distribute contributions among the team, we each chose a deep neural architecture that is relevant to the tasks of object detection and semantic segmentation. The team ended up independently choosing two types of general neural network architectures, the Convolutional Neural Network(CNN) and the Vision Transformer(ViT)\cite{dosovitskiy2020image}. Furthermore, we chose a third option, a type of network design space called RegNet, and applied this to the CNN to see whether this brings significant changes. Also a common framework is used among the team where each team member would have access to common building blocks, tools for analysis, and similar pipelines for training and testing models. This early decision would prove beneficial for assisting one another in troubleshooting and comparing methods. We leveraged the popular MMDetection\cite{mmdetection} toolbox which has PyTorch deep learning framework support. Further details on deep learning frameworks, existing code, source code for experiments, and models are detailed in the Appendix section \ref{existingCodeSection}.
 
-For Faster RCNN, we want to test it on the truncated Coco 2017 dataset and see how compressed images effect the accuracy of the model. We will be using PCA to compress the images so there will be 3 datasets, one baseline and one that has 50 percent of the principle components and one that has 25 percent of the components. We will train the model on the baseline and compressed images and see how each model performs on the actual uncompressed images in test. We will also test pre-trained models and models with slight architectural differences on the same data set. 
-
-%We want to analyze the performance of different architectures in the MMdetection model library against each other. They are specifically Faster RCNN, mask RCNN and Swin transformers. We also want to test the performance of some of these models with compressed images. 
+For Faster R-CNN, we want to test it on the truncated Coco 2017 data set and see how compressed images effect the accuracy of the model. We will be using Principal Component Analysis(PCA) to compress the images so there will be 3 data sets, one baseline and one that has 50 percent of the principle components and one that has 25 percent of the principle components. We will train the model on the baseline and compressed images and see how each model performs on the actual uncompressed images in test. We will also test pre-trained models and models with slight architectural differences on the same data set. 
 
 %(5 points) How is it done today, and what are the limits of current practice?
 
-%Faster RCNN as a baseline, Mask RCNN as an improvement and SWIN transformer as a further improvement? 
+\subsection{How It Is Done Today}
 
-\subsection{Background}
+\subsubsection{Faster R-CNN}
 
-The team ended up independently choosing two types of general neural network architectures, the Convolutional Neural Network(CNN) and the Visual Transformer(ViT). CNNs have seen an explosion of success in computer vision tasks in the last decade. CNNs are known to exhibit inductive biases that make them adept at analyzing images for examples. Such inductive biases include: locality, translation equivariance, and translation invariance. 
+CNNs have seen an explosion of success in computer vision tasks in the last decade. CNNs are known to exhibit inductive biases that make them adept at analyzing images for example. Such inductive biases include: locality, translation equivariance, and translation invariance.
 
-Currently many modern CNN's used in object detection add a feature pyramid network and a region proposal network on to the backbone CNN network. Faster RCNN is a form of this approach. The first layer is a CNN layer from resnet. It had four stages. The results of this layer are connected to a Feature Pyramid Network. The Feature Pyramid Network is a feature extractor which extracts the necessary feature maps that are needed for object detectors. At each stage of the resnet from the bottom up, a feature pyramid network will decrease spatial resolution and increase the semantic value. Therefore at the top layer the semantic value is highest. This top layer is then used to reconstruct layers or feature maps which are then used in the next step which is the region proposal network. 
+Currently many modern CNN's used in object detection add a Feature Pyramid Network(FPN) \cite{lin2017feature} and a Region Proposal Network(RPN) on to the backbone CNN network. Faster R-CNN\cite{ren2015faster} is a form of this approach. The first layer is a convolution layer from Resnet. It has four stages. The results of this layer are connected to a Feature Pyramid Network\cite{lin2017feature}. The FPN is a feature extractor which extracts the necessary feature maps that are needed for object detectors. At each stage of the Resnet from the bottom up, a feature pyramid network will decrease spatial resolution and increase the semantic value. Therefore at the top layer the semantic value is highest. This top layer is then used to reconstruct layers or feature maps which are then used in the next step which is the region proposal network. 
 
-In the region proposal network, first anchor points are generated. Every point in the feature map is an anchor point. Then anchor boxes are generated for every anchor point. These anchor boxes are generated with the scales and ratio set; they determine the sizes of the boxes. Initially these boxes are dummy boxes so the model has to learn whether the given box is foreground or background and at the same time it needs to learn the offsets to adjust the boxes so they fit the objects. This learning is done through regression. Once the foreground, background scores and offsets of anchor boxes are learned then the anchor boxes are processed again using proposal generation. Final proposals for the bounding box of an object are done through a region of interest pooling layer.
+In the RPN, first anchor points are generated. Every point in the feature map is an anchor point. Then anchor boxes are generated for every anchor point. These anchor boxes are generated with the scales and ratio set; they determine the sizes of the boxes. Initially these boxes are dummy boxes so the model has to learn whether the given box is foreground or background and at the same time it needs to learn the offsets to adjust the boxes so they fit the objects. This learning is done through regression. Once the foreground, background scores and offsets of anchor boxes are learned then the anchor boxes are processed again using proposal generation. Final proposals for the bounding box of an object are done through a region of interest pooling layer.
 
+\vspace{-4.5mm}
 
+\subsubsection{RegNet}
+One major flaw for CNN (or any other types of networks) is that sometimes, it can be a bit hard to generalize this to many different types of tasks and data. This is because each of those tasks and data will likely require different sets of hyperparameter combinations. Because of this inconvenience, there has been a recent attempt to focus not on the design and tuning of individual networks, but rather combine the effort of tuning an individual network and finding the best architecture of the network for the given task. This is where RegNet was formed. RegNet came from an effort to find a general set of network designing principles that would not give us not just one best architecture for a single network, but find a design space of certain types of networks that would be the most efficient in doing different tasks \cite{NetworkDesignSpace}. On certain studies, the performance of RegNet was found to be better and faster in similar training settings. This is why RegNet was also explored in addition to the CNN. One caveat is that RegNet is optimizing a much broader space, so it may provide slightly worse results compared to tuning an individual network for a particular task. 
 
-Inspired by the general learning architecture of transformers\cite{vaswani2017attention} that have made breakthroughs in natural language processing, vision transformers were introduced as a competitive architecture for computer vision tasks such as image classification\cite{dosovitskiy2020image} with reliance on large-scale pre-training data. There has been an explosion in transformer-based computer vision models with applications ranging from image retrieval\cite{el2021training}, object detection\cite{liu2021swin}, semantic segmentation\cite{wang2021pyramid}\cite{zhang2021multi}\cite{https://doi.org/10.48550/arxiv.2012.15840}, and video understanding\cite{https://doi.org/10.48550/arxiv.2103.15691}\cite{bertasius2021space}\cite{https://doi.org/10.48550/arxiv.2104.11227} have also shown promising results. Motivated by the success of visual transformers, self-supervised methods using vision transformers have been studied showing better results when self-training is applied as opposed to pre-training\cite{zoph2020rethinking}\cite{https://doi.org/10.48550/arxiv.2104.14294}.
+\vspace{-4.5mm}
 
-However ViTs require vasts amount of data, time, and computational memory due to the quadratic cost of self-attention that is dependent on the number of patches. In object detection and segmentation tasks, a $wxh$ image has a complexity of $O(w^2h^2)$ when the images are high-resolution images. As a result, a general-purpose transformer backbone called the Swin Transformer\cite{liu2021swin} was proposed which constructs hierarchical feature maps and has linear computational complexity to image size. It inherits the advantages of the CNN as it fully considers the size invariance and relation between receptive fields. Limitations of the Swin Transformer is that it does not not have as many inductive biases as the CNN such as translation invariance. This in turns make learning very difficult requiring larger datasets and/or stronger data enhancements to achieve better learning performance.
+\subsubsection{Swin Transformer}
 
-\subsection{Motivation}
+Inspired by the general learning architecture of transformers\cite{vaswani2017attention} that have made breakthroughs in natural language processing, vision transformers were introduced as a competitive architecture for computer vision tasks such as image classification\cite{dosovitskiy2020image} with reliance on large-scale pre-training data. Shortly after the introduction of the ViTs that showed to achieve comparable or even superior performance on image classification tasks, the Google Brain team analyzed how ViTs are solving these tasks and how do their learned representations compare to CNNs\cite{raghu2021vision}(inspired from the third graded discussion readings in this class). Their findings discovered that ViTs show strong preservation of spatial information which is useful in other computer vision tasks such as object detection. Since then, vision transformers have made their way into object detection setting key milestones\cite{arkin2021survey}:
+
+%\includegraphics[width=0.8\linewidth]{docs/latex/images/brandon/ObjectDetection.png}
+%\caption{Fig. 1 Object Detection algorithm milestones}
+
+The major strength of ViTs is also it's disadvantage in its abilility to establish long relationships. As a result, ViTs require vasts amount of data, time, and computational memory due to the quadratic cost of self-attention that is dependent on the number of patches. In object detection and segmentation tasks, a $wxh$ image has a complexity of $O(w^2h^2)$. Needless to say, processing high-resolution images come at high cost often intractable. As a consequence, the general-purpose transformer backbone called the Swin Transformer\cite{liu2021swin} was proposed which constructs hierarchical feature maps and has linear computational complexity to image size. It inherits the advantages of the CNN as it fully considers the size invariance and relation between receptive fields.
+
+\subsection{Limitations of Current Practice}
 
 Object detection takes a lot of computational capacity and space. One area specifically is the images themselves; high quality images take up a lot of space. Therefore its worthwhile to explore methods that allow for a decrease in the space needed to store these images. We will decrease the quality of the images by taking smaller principle components of each image. This approach will simulate the use of lower quality images in training. 
 
-Shortly after the introduction of the ViTs that showed to achieve comparable or even superior performance on image classification tasks, the Google Brain team analyzed how ViTs are solving these tasks and how do their learned representations compare to CNNs\cite{raghu2021vision}(inspired from the third graded discussion readings in this class). Their findings discovered that ViTs show strong preservation of spatial information which is useful in other computer vision tasks such as object detection. Since then, transformers have made their way into object detection setting key milestones\cite{arkin2021survey}:
+ Limitations of the Swin Transformer\cite{liu2021swin} is that it does not not have as many inductive biases as the CNN such as translation invariance. This in turns make learning very difficult often requiring larger data sets and/or stronger data enhancements to achieve better learning performance. The impact on the amount of data required to train effective transformers can be see with GradCam\cite{selvaraju2017grad}. Appendix \ref{SwinGradCamRefs} explores various Swin Transformer sizes trained on Imagenet1K\cite{krizhevsky2012imagenet} and ImageNet21k data sets. Additionally, applied researchers in the field of remote sensing applications\cite{xu2021improved} report that the architecture is limited on its ability to encode context information which affects detection accuracy of small-scale objects.
 
-\includegraphics[width=0.8\linewidth]{docs/latex/images/brandon/ObjectDetection.png}
-%\caption{Fig. 1 Object Detection algorithm milestones}
 
+\subsection{Who Cares?}
 %(5 points) Who cares? If you are successful, what difference will it make?
 
 The scope of our work is aimed at practitioners such as applied research scientists, machine learning engineers, robotics engineers, and anyone interested in practical performance of CNN and ViT based models perform. We motivate this project by diving deeper into the strengths and weaknesses of CNNs and ViTs through controlled experiments that compare performance on object detection and semantic segmentation tasks.
 
-%%%%%%%%%%% DATASET
-\subsection{Dataset}
+\subsection{Data Set}
 %(5 points) What data did you use? Provide details about your data, specifically choose the most important aspects of your data mentioned \href{https://arxiv.org/abs/1803.09010}{here}. You don’t have to choose all of them, just the most relevant.
 
-Here we briefly discuss the the most important aspects\cite{gebru2021datasheets} of the data used for experiments. We use the popular Microsoft COCO 2017 dataset\cite{lin2014microsoft} that commonly used to evaluate the performance of computer vision models. The name COCO standards for Common Objects in Context as it was designed to represent a vast array of everyday objects. It is widely considered the gold standard for tasks such as object detection, semantic segmentation, and key point detection. The data set consists of 121,408 images, 883, 331 object annotations, 80 classes, and an average image ratio of 640x480. For the experiments, we are interested in object detection and semantic segmentation performance.
+Here we briefly discuss the the most important aspects\cite{gebru2021datasheets} of the data set used for experiments. We use the popular Microsoft COCO 2017 data set\cite{lin2014microsoft}. The name COCO standards for Common Objects in Context(COCO) as it was designed to represent a vast array of everyday objects. It is widely considered the gold standard for tasks such as object detection, semantic segmentation, and key point detection. The data set consists of 121,408 images, 883,331 object annotations, 80 classes, and an average image ratio of 640x480. For the experiments, we are interested in object detection and semantic segmentation performance.
 
-Due to computational constraints and limitations of the models we chose we eventually settled on a truncated version of the COCO 2017 data set. This data set has the bbox annotations and the mask annotations needed for fast R-CNN and mask R-CNN. This data was further truncated to 1977 images for train, 500 for test, and 494 for validation. These images were all taken from the original training data set. This drastic truncation is needed due to our limited time and computational hardware.  
+Due to computational constraints and limitations of the models we chose we eventually settled on a truncated version of the COCO 2017 data set. This data set has the bounding box (bbox) annotations and the mask annotations needed for Faster R-CNN and Mask R-CNN. This data was further truncated to 1977 images for train, 500 for test, and 494 for validation. These images were all taken from the original training data set. This drastic truncation is needed due to our limited time and computational hardware.  
 
 For the image compression experiments the images were converted to two compressed image sets. One set that has 50 percent of the principle components and another set that has 25 percent of the principle components. The training and validation data was converted this way but the test data was left the same to simulate how modeled trained on compressed images would perform in the real world. 
 
-Also for coco we focused on one class classification because the classes in the dataset was quite imbalanced as can be seen from the following training class distribution figures:
+Also for coco we focused on one class classification because the classes in the data set was quite imbalanced as can be seen from the following training class distribution figures:
 
 \includegraphics[width=0.8\linewidth]{docs/latex/images/brandon/coco17_train.png}
 %\caption{Before: Training Class Distribution}
@@ -114,110 +121,215 @@ Also for coco we focused on one class classification because the classes in the 
 \includegraphics[width=0.8\linewidth]{docs/latex/images/brandon/coco17_train_trunc.png}
 %\caption{After: Training Class Distribution}
 
-\includegraphics[width=0.8\linewidth]{docs/latex/images/brandon/coco17_val_trunc.png}
+%\includegraphics[width=0.8\linewidth]{docs/latex/images/brandon/coco17_val_trunc.png}
 %\caption{After: Validation Class Distribution}
 
 \section{Architecture Designs}
-
-
-
-% Faster RCNN stuff moved to background. 
+% Address questions from 'Other Sections' that is worth points
 
 \subsubsection{Mask R-CNN Swin Transformer}
 
-
-As illustrated in the following diagram, the deep neural network architecture presented is composed of 3 main components: backbone, neck, and model.
+As illustrated in the following diagram, the deep neural network architecture presented is composed of 3 main components: backbone(Swin Transformer), neck(Feature Pyramid Network), and model(Mask R-CNN).
 
 \includegraphics[width=1.0\linewidth]{docs/latex/images/brandon/Architecture.png}
 
-Backbone - The Swin transformer builds a hierarchical transformer and performs self-attention calculations in the window area without overlap.
+An image of size 256x256 is expected of the model but not a strict requirement. Before an image is fed into the architecture above, a set of pre-processing stages occur after loading the image: the image is resized to 1333x800, randomly flipped, normalized, and padding is added.
 
-Neck - Feature Pyramid Network\cite{https://doi.org/10.48550/arxiv.1612.03144} is used as a feature extractor
-
-Model - Mask-RCNN\cite{he2017mask} an extension of Faster R-CNN that has slightly more overhead that works by adding a branch for predicting an object mask called a Region of Interest (ROI) in parallel with an existing branch for recognition.
-
-The train and test pipeline consists of a number of augmentations where the image is resized, randomly flipped, and normalized. The following is a table of hyper-parameters and values used.
-
-%TODO brandon
-%\subsection{Assessing the Loss}
-%The Swin Transformer with Mask R-CNN uses cross entropy as it's loss function for assessing it's learning.
-%\includegraphics[width=0.8\linewidth]{docs/latex/images/brandon/Swin_train_loss.png}
-%\caption{Swin Transformer Training Loss}
+The following is a table of a limited set of hyper-parameters in the architecture components that are used to tune model performance:
 
 \begin{table}[htbp]
 \centering
-\caption{Highlighted Hyperparameters}
+\caption{Highlighted Architecture Hyper-parameters}
 \label{table:hyper} 
 \catcode`,=\active
 \def,{\char`,\allowbreak}
 \renewcommand\arraystretch{1.2}
-\begin{tabular}{p{2.5cm}<{\raggedright} p{1cm} p{1cm}<{\raggedright} }
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{p{1.4cm}<{\raggedright} p{1.9cm} p{3.7cm}<{\raggedright} }
   \toprule
-    Hyperparameters           & \textbf{Values} & \textbf{Selected Values}              \\ 
+\textbf{Component}           & \textbf{Values} & \textbf{Selected Values}  \\
   \midrule
-    Backbone                  & Window Size & 7                                   \\
-    Optimizer                 & AdamW & 0.0001                                             \\ 
+    Backbone          & Window Size & 7 \\
+    Backbone          & Activation & GELU \\
+    Backbone          & Layers & LayerNorm, 2-layer MLP\\
+    Backbone          & Attn Heads & 3, 6, 12, 24 \\
+    Optimizer         & AdamW & 0.0001 \\
+    Neck              & In Channels & 96, 192, 384, 768 \\
+    Method            & Loss & Cross Entropy \\
+    Method            & Mask Size & 28 \\
   \bottomrule
-\end{tabular} 
+\end{tabular}
+}%end resize
 \end{table}
 
-The impact on the amount of data required to train effective transformers can be see with GradCam\cite{selvaraju2017grad}. Appendix \ref{SwinGradCamRefs} explores various Swin Transformer sizes trained on Imagenet1K and ImageNet21k datasets.
+\vspace{-3mm}
 
-\subsubsection{RegNet Eric TODO}
+\subsubsection{RegNet}
 
-%\begin{table}
-%\begin{center}
-%\begin{tabular}{|l|c|c|c|}
-%\hline
-%Backbone & Method   & Neck & Optimizer\\
-%\hline\hline
-%Swin-T   & Mask-RNN & FPN & AdamW\\
-%\hline
-%\end{tabular}
-%\end{center}
-%\caption{Deep Neural Architectures}
-%\end{table}
+RegNet came from an effort to not find the best network, but the best network design space. For our case, we are specifically talking about CNNs. The process was to first choose a space called AnyNet, which is virtually a space without any conditions, and then add conditions to see if the error distributions are improved optimally. The below image shows that as we go from space A to space C, our error distributions get better, making C a better space than A and B. Do note that most of the search was done in a setting that required low computational resources. 
+\includegraphics[width=1.0\linewidth]{docs/latex/images/eric/errordist.png}
+
+The key to the RegNet space is that the width and depth of the network is determined by a quantized linear function \cite{NetworkDesignSpace}. We also have to quantize this, and this lets us have a quantized linear parameterization of width of block $j$ to be $u_j = w_a (j+1)$ where $w_a$ is simply the slope. 
+
+From here, we can build a more specific design space called RegNetX that was utilized in our experiments. The name comes from the so called X block, which includes bottleneck layers. Bottleneck layers are simply layers with fewer neurons than adjacent layers, and this is done so that we can compress feature representations to operate in limited computation spaces. This block has 1-by-1 convolution layers at the start and at the end, and it has a 3-by-3 group convolution layer in between. The block has 3 parameters: width, group width, and the bottleneck ratio that determines how much fewer layers the bottleneck layer will have \cite{NetworkDesignSpace}. The below diagram would represent how a RegNetX applied on CNN would look like roughly \cite{RegNetPic}. 
+\includegraphics[width=1\linewidth]{docs/latex/images/eric/regnetstruct.png}
 
 %-------------------------------------------------------------------------
 %------------------------------------------------------------------------
 \section{Approach}
 
+\subsection{What We Did}
 %(10 points) What did you do exactly? How did you solve the problem? Why did you think it would be successful? Is anything new in your approach?
-
-The main objective we wanted to study was how well do the CNN and Transformer deep neural networks compare in controlled experiments on the same data set. We foresaw having different architectures being an issue when it came to comparing results and performance which motivated the idea of having a common framework. Upon doing research on object detection methods, we found a popular toolbox in which to base our experiments on, MMDetection\cite{mmdetection}. 
-
-In the CNN model set we picked the Faster RCNN to do image compression experiments on. The compression experiments would be done on 3 different models; one without any pre-tuning, one with pre-tuning and one that has a slight architecture change and has no pre-tuning. The model that has the slight architecture change has the scales doubled from 8 to 16. Scales is one of the parameters that determine the anchor box sizes therefore we were hoping that large anchor boxes sizes could overcome the blurriness that comes with compressed images and therefore give better results. All three models will be trained and validated on three different data sets but will be tested on one data set. The three data sets used for training and validation are; a set of  uncompressed images, and a set of compressed images that have 50 percent principle components and a set of images that have only 25 percent principles components. All three data sets are the same truncated coco images and are essentially the same, other than the compression done by PCA. Testing data will only be on uncompressed images. Essentially we want to see how models perform on the original images when trained on compressed images.
-
-For comparing models, CNN to transformers, we generated baseline performances on the truncated coco data set then did some fine-tuning of the model parameters. Existing pre-trained models were used as baselines. Fine tuning was done on model parameters and some architecture parameters as time allowed. An enhancement to the Swin Transformer is proposed in Appendix \ref{proposedSwin} that serves as future work.
-
-%(5 points) What problems did you anticipate? What problems did you encounter? Did the very first thing you tried work?
-
-The types of architectures that we experimented with and analyzed have an inherit difficulty in requiring lots of hardware resources such as storage and GPUs for training models from scratch. It was learned early that using the COCO 2017 dataset would involve several days of training as well as exceed current GPU resources which motivated the idea of reducing the dataset size. Even for training jobs such as fine-tuning, the authors experienced varying memory usages of 3GB to 10GB of GPU for small batch sizes which was surprising.
-
-We also experiences issues with extracting certain metrics with mmdetection. Validation loss was one metric that we were not able to extract. In fact we found differences in results when calling a script to run the model vs running it extracting the functions from the files and running the model through those functions. We found that we can only get validation metrics, and even then it was only precision scores by running it from a script. This issue forced us to have to rerun everything to get some sort of validation metrics.   
-
 %\textbf{Important: Mention any code repositories (with citations) or other sources that you used, and specifically what changes you made to them for your project. }
 
-\subsection{Code and Model References}
+The main objective we wanted to study was how well do the CNN and Transformer deep neural networks compare in controlled experiments on the same data set. We foresaw having different architectures being an issue when it came to comparing results and performance which motivated the idea of having a common framework. Upon doing research on object detection methods, we found a popular toolbox in which to base our experiments on, MMDetection\cite{mmdetection}. See Appendix \ref{existingCodeSection} regarding information related to deep learning frameworks, existing code, source code changes, and existing models used to produce experimental results.
 
-See Appendix \ref{existingCodeSection}, regarding information related to deep learning frameworks, existing code, source code changes, and models used to produce experimental results.
+In the CNN model set we picked the Faster R-CNN to do image compression experiments on. The compression experiments would be done on 3 different models; one without any pre-tuning, one with pre-tuning and one that has a slight architecture change and has no pre-tuning. The model that has the slight architecture change has the scales doubled from 8 to 16. Scales is one of the parameters that determine the anchor box sizes therefore we were hoping that large anchor boxes sizes could overcome the blurriness that comes with compressed images and therefore give better results. All three models will be trained and validated on three different data sets but will be tested on one data set. The three data sets used for training and validation are; a set of  uncompressed images, and a set of compressed images that have 50 percent principle components and a set of images that have only 25 percent principles components. All three data sets are the same truncated coco images and are essentially the same, other than the compression done by PCA. Testing data will only be on uncompressed images. Essentially we want to see how models perform on the original images when trained on compressed images.
+
+For comparing models, CNN (and RegNet) to the Swin Transformer, we generated baseline performances on the truncated coco data set then did some fine-tuning of the model parameters. Existing pre-trained models were used as baselines. Fine tuning was done on model parameters and some architecture parameters as time allowed. An enhancement to the Swin Transformer is proposed in Appendix \ref{proposedSwin} that serves as future work.
+
+\subsection{Problems Anticipated and Encountered}
+%(5 points) What problems did you anticipate? What problems did you encounter? Did the very first thing you tried work?
+
+The types of architectures that we experimented with and analyzed have an inherit difficulty in requiring lots of hardware resources such as storage and GPUs for training models from scratch. It was learned early that using the COCO 2017 data set would involve several days of training without hyperparameter tuning as well as exceed current GPU resources which motivated the idea of reducing the data set size. Even for fine-tuning training jobs, the authors experienced varying memory usages of 3GB to 10GB of GPU for small batch sizes which was surprising.
+
+%We also experienced issues with extracting certain metrics with MMDetection. Validation loss was one metric that we were not able to extract. In fact we found differences in results when calling a script to run the model vs running it extracting the functions from the files and running the model through those functions. We found that we can only get validation metrics, and even then it was only precision scores by running it from a script. This issue forced us to have to rerun everything to get some sort of validation metrics.   
+
 
 \section{Experiments and Results}
 
+
+\subsection{Measuring Success}
 %(10 points) How did you measure success? What experiments were used? What were the results, both quantitative and qualitative? Did you succeed? Did you fail? Why? Justify your reasons with arguments supported by evidence and data.
 
-To measure success, we use common metrics found in object detection and semantic segmentation studies\cite{padilla2020survey} such as true positive(TP), false positive(FP), false negative(FN), precision(P), recall(R), Recall over Curve(ROC), intersection over union(IOU), mean average precision (mAP). All of these metrics compose the main ones we are interested in, namely box mAP and segmentation mAP, 
+%To measure success, we use common metrics found in object detection and semantic segmentation studies\cite{padilla2020survey} such as true positive(TP), false positive(FP), false negative(FN), precision(P), recall(R), Recall over Curve(ROC), intersection over union(IOU), mean average precision (mAP). All of these metrics compose the main ones we are interested in, namely box mAP and segmentation mAP, 
 
-\begin{equation}
-mAP = \frac{1}{N} \sum_{i=1}^N AP_i
-\end{equation}
+%\begin{equation}
+%mAP = \frac{1}{N} \sum_{i=1}^N AP_i
+%\end{equation}
 
-The following experiments evaluate model success through image compression performance, baseline mAP, fine-tuned mAP, overfitting, model complexity and performance where we also briefly introduce new metrics.
+%One of the constraints one has to consider when deploying a model into production is scalability. At max performance, how well does a model perform? Each model is evaluated on how many floating point operations required for a single forward pass measured in Floating Point Ops per Second (FLOPS). Higher values of FLOPS means the model is slower and has a lower throughput. The number of parameters, in millions (M), is also listed. This metric is useful for practitioners interested in models that can fit into low memory environments such as edge computing applications and robotics. Lastly we provide Frames Per Second (FPS) where each model is evaluated on how many images it can on average process of size 1280x720 pixels which is the common 720p standard high-definition display resolution.
+
+Summary of metrics referenced in the following experiments use to gauge success:
+
+\begin{itemize}
+\setlength\itemsep{0pt}
+    \item box mAP - measures how 'tight' the predicted bounding box on average is to the ground truth label, It is the mean of the all the average bounding box precision. 
+    \item mask mAP - measures how accurate the intersection of pixels are on average to the ground truth label
+    \item Floating Point Operations(FLOPs) - Lower values are better as it means the model uses less floating point calculations
+    \item Parameters(Params) - measured in million(M), this metric is useful for practitioners interested in models that can fit into low memory compute environments like edge computing devices
+    \item Frames Per Second(FPS) - how many images of size 1280x720, 720p resolution, a model can process in a second
+\end{itemize}
+
+%The following experiments evaluate model success through image compression performance, baseline mAP, fine-tuned mAP, overfitting, model complexity and performance.
 
 %\textbf{Important: This section should be rigorous and thorough. Present detailed information about decision you made, why you made them, and any evidence/experimentation to back them up. This is especially true if you leveraged existing architectures, pre-trained models, and code (i.e. do not just show results of fine-tuning a pre-trained model without any analysis, claims/evidence, and conclusions, as that tends to not make a strong project). }
 
-\subsection{Faster RCNN Results for image compression}
-These results are test data taken from a model that has the same baseline architecture but has not seen any pre-tuning or tuning. Faster RCNN does not have a Mask mAP component. 
+\subsection{Overfitting and Generalization} \label{overfittingGeneralization}
+
+%One of the problems we encountered is our inability to extract the validation losses from the training results. Therefore, we had to look to other metrics to find if we are not over fitting and are generalizing well. 
+
+When assessing models for overfitting and how well they generalized to new data, we examined each model's training accuracy and validation bbox average precision. We found that for all model experiments that both metrics were increasing like in \autoref{fig:figure1} therefore we can say that we are not over-fitting. Below is an image that shows a sample of the training losses and validation losses for RegNet. For brevity, we do not show the Swin Transformer and ResNet Faster R-CNN as they exhibit the same behavior.
+% need comments for Swin and regnet
+
+%\begin{figure}
+%     \centering
+%    {{\includegraphics[width=3cm]{docs/latex/images/larry/pre_base_results_train_acc.png} }}
+%     \qquad
+%     {{\includegraphics[width=3cm]{docs/latex/images/larry/pre_base_results_val.png} }}
+%     \caption{Faster R-CNN training accuracy and validation accuracy}
+%     \label{fig:larryTrainVal}
+%\end{figure}
+
+%\begin{figure}
+%     \centering
+%     {{\includegraphics[width=3cm]{docs/latex/images/brandon/swin_train_acc.png} }}\label{swinTrainAcc}
+%     \qquad
+%     {{\includegraphics[width=3cm]{docs/latex/images/brandon/swin_val_loss_bbox.png} }}\label{swinValLoss}
+%     \caption{Swin Transformer: Train/Validation accuracy}
+%     \label{fig:brandonTrainVal}
+%\end{figure}
+
+\begin{figure}[H]
+     \centering
+     {{\includegraphics[width=3cm]{docs/latex/images/eric/base train acc.png} }}
+     \qquad
+     {{\includegraphics[width=3cm]{docs/latex/images/eric/base val bbox map.png} }}
+     \caption{RegNet: Train/Validation accuracy}
+     \label{fig:figure1}
+\end{figure}
+
+\subsection{Experiment 0: Baseline}
+
+\begin{table}[hbt!]
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+Backbone & Method   & Box mAP & Mask mAP \\
+\hline\hline
+Swin-T   & Mask R-CNN & 0    & 0 \\
+Resnet50   & Faster R-CNN & 0.1 & N/A \\
+RegNet & Faster R-CNN & 0 & N/A \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Baseline performance}
+\end{table}
+
+In order to gauge performance of experiments, we first established a baseline from the pre-trained ImageNet-1K models. More specifically, we want to know the performance of the pre-trained ImageNet-1K model on it's ability to generalize to the truncated COCO 2017 data set. One of the expectations we had for the experiment going in is that the pre-trained models would be able to reasonably generalize in testing since there are common classes such as person. However, results were abysmal to say the least. We suspect the inherit difficulty bias in COCO coupled with overfitting to the ImageNet pre-trained models that were trained on 256x256 images are the main culprits for poor model performance. Other ideas we brainstormed were not enough hyperparameter tuning using optimization techniques such as grid search, random search, or Bayesian search which is a consequence of limited time and computational power.
+
+\subsection{Experiment 1: Fine-Tuned Performance}
+
+\begin{table}[hbt!]
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+Backbone & Method   & Box mAP & Mask mAP \\
+\hline\hline
+Swin-T   & Mask R-CNN & 42.7    & 39.3 \\
+Resnet50   & Faster R-CNN & 54.6    & N/A \\
+RegNet & Faster R-CNN & 45.0 & N/A \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Fine-tuned performance}
+\end{table}
+
+%When exposed to new data in the validation set, the Swin Transformer is able to perform better overtime when measuring Box mAP and Mask mAP. Overfitting is not apparent from Figure 1. This is for RegNet, but the shape is similar for Swin Transformer.
+
+One of the surprising outcomes when comparing model performance was how underperforming the Swin Transformer was in comparison. We speculate that the under performance can be explained by the structure of the model type, Mask R-CNN in this case, to the structure of the data which contains annotations for Box and Mask mAP values. One motivating factor for using the Swin Transformer Mask R-CNN model is that it is the only one capable of performing semantic segmentation and object detection tasks which makes it a versatile model.
+
+For Faster RCNN the model had hyper parameters of learning rate, epochs, warm ups, and evaluation metric. These were all set from a baseline configuration; epoch is 12, warmup is linear and evaluation metric is linear. The linearing rate was also automatically set with respect to how many GPU's the computers was using. 
+
+For the RegNet, the additional X blocks that we have are not really possible to tune due to the fact that much of these building blocks are set. The studies have also shown that bottleneck ratio of 1 also gives the best results. Therefore, in order to fine tune this, we have to tune the simpler Faster R-CNN component, tuning the hyper-parameters stated above. This still gives a different result than simply tuning the faster R-CNN by itself. Results are shown in Figure 1. There does not seem to be any overfitting based on the figure.  
+
+For all models the loss function is cross entropy and the optimizer for Faster RCNN and Regnet is SGD. For Swin the optimizer is AdamW. 
+
+\subsection{Experiment 2: Model Performance and Complexity}
+
+\begin{table}[hbt!]
+\begin{center}
+\scalebox{0.9}{
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Backbone & Method & FLOPs (G) & Params (M) & FPS \\
+\hline\hline
+Swin-T   & Mask R-CNN & 263 & 48 & 23.8 \\
+Resnet50   & Faster R-CNN & 202 & 41 & 15.4 \\
+RegNet & Faster R-CNN & 183 & 31 & 7.4 \\
+\hline
+\end{tabular}
+}%end scalebox
+\end{center}
+\caption{Model performance and complexity with 720p images}
+\end{table}
+
+Scalability of models is a performance characteristic of interest to practitioners so we focus on computational complexity of the models in this experiment. As one can see, there is a performance gap between the Swin-T, RegNet, and Resnet50 Faster R-CNN model. One can observe a correlation between FLOPS and the number of parameters for each model. This makes sense intuitively that a larger complex model implies that there are more floating point operations to perform. What we found surprising is that the Swin-T model is able to process more images per second than the Faster R-CNN model while having a higher count of FLOPs and parameters.
+
+Our RegNet model is also a simplified version of faster R-CNN but has the additional RegNetX component. RegNet also already attempts to choose the simplest model that optimizes the error distribution, so it was fully expected to see the lower number of parameters. Because RegNet is a model that attempts to simplify the model as much as possible, it is fully expected that RegNet has least number of parameters, and therefore, the least amount of FLOPs. 
+
+\subsection{Experiment 3: Faster R-CNN Results for image compression}
+This set of experiments will consist of three experiments for image compression. The first experiment in this set is for a baseline model without any pre-trained model loaded.  We will train this baseline model on the three data sets. The charts below show the test results.
 
 \begin{table}[hbt!]
 \begin{center}
@@ -231,10 +343,10 @@ compressed, 25 percent PCA used & 30.1 \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Faster RCNN Baseline performance}
+\caption{Resnet 50 Faster R-CNN Baseline performance}
 \end{table}
 
-These results are test data taken from a model that has the same baseline architecture but has seen pre-tuning. Faster RCNN does not have a Mask mAP component. 
+The second experiment in this set is with a pre-trained model.  We will retrain this pre-trained model on the three data sets. The charts below show the test results. The results here was much better than the other experiments in this set. This is mainly due to loading a pre-trained model that already saw some configurations of people. 
 
 \begin{table}[hbt!]
 \begin{center}
@@ -248,10 +360,10 @@ compressed, 25 percent PCA used & 53.0 \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Faster RCNN pretuned performance}
+\caption{Resnet 50 Faster R-CNN pre-trained performance}
 \end{table}
 
-These results are test data taken from a model that has a slight architecture adjustment which is doubling the scales used to generate the anchor boxes. The scales are used to generate the sizes of the anchor boxes; the idea is to increase them so that any blurriness from the compressed images can be overcome. No pre-tuning was done. 
+The third experiment in this set is with a model that has a slight architecture change. These results are test data taken from a model that has a slight architecture adjustment which is doubling the scales used to generate the anchor boxes. The scales are used to generate the sizes of the anchor boxes; the idea is to increase them so that any blurriness from the compressed images can be overcome. No pre-tuning was done. 
 
 \begin{table}[hbt!]
 \begin{center}
@@ -265,96 +377,37 @@ compressed, 25 percent PCA used & 29.2 \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Faster RCNN architecture adjustment performance}
-\end{table}
-\subsection{Baseline Results}
-
-In order to gauge performance of experiments, we first established a baseline from pre-trained ImageNet-1K models. More specifically, we want to know the performance of the pre-trained ImageNet-1K model on it's ability to generalize to the truncated COCO 2017 dataset. One of the expectations we had for the experiment going in is that the pre-trained models would be able to generalize well in testing since there are common classes such as person. However, results were abysmal. We suspect the inherit difficulty bias in COCO coupled with overfitting of the ImageNet pre-trained models.
-
-
-\begin{table}[hbt!]
-\begin{center}
-\begin{tabular}{|l|c|c|c|}
-\hline
-Backbone & Method   & Box mAP & Mask mAP \\
-\hline\hline
-Swin-T   & Mask-RNN & 0    & 0 \\
-CNN   & Faster-RCNN & 0.1 & N/A \\
-\hline
-\end{tabular}
-\end{center}
-\caption{Baseline performance}
+\caption{Faster R-CNN architecture adjustment performance}
 \end{table}
 
-\subsection{Fine-Tuned Results}
+The next figure is from the baseline model which shows the training and validation accuracy. Both are increasing throughout the training regime, therefore it shows that the model is not over fitting. The whole set of figures for this experiment on compressed images can be found in the appendix D. 
 
-TODO
+\begin{figure}[H]
+    \centering
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/base_results_train_acc.png} }}
+    \qquad
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/base_results_val.png} }}
+    \caption{Faster R-CNN baseline training accuracy and validation accuracy}
+    \label{fig:example}
+\end{figure}
 
-\begin{table}[hbt!]
-\begin{center}
-\begin{tabular}{|l|c|c|c|}
-\hline
-Backbone & Method   & Box mAP & Mask mAP \\
-\hline\hline
-Swin-T   & Mask-RNN & 42.7    & 39.3 \\
-\hline
-\end{tabular}
-\end{center}
-\caption{Fine-tuned performance}
-\end{table}
+Overall for the Faster R-CNN experiments done on image compression, the results showed that in all cases the models trained on uncompressed images did the best. However the 50 percent compressed image experiments did almost as good. Performance did seem to drop off much more when only 25 percent of the components are used. Therefore potentially we could train models on compressed images that only have 50 percent of the principle components and not get a large performance hit. Also in all experiments the same hyper-parameters were used to make sure the model itself stayed the same and the only thing that changed was the images. 
 
-\subsection{Analysis of Results}
+Also the slight architecture change of doubling the scales did not result in better performance. This means that increasing the anchor box sizes did not result in better performance. This could be due to many factors, perhaps the scale used was already on the larger side for the image. Further analysis could be done with other parameters to change anchor box sizes however we did not have more time to do further experiments. 
 
-For the Faster RCNN experiments done on Image compression, the results showed that in all cases the models trained on uncompressed images did the best. However the 50 percent compressed image experiments did almost as good. Performance did seem to drop off much more when only 25 percent of the components are used. Therefore potentially we could train models on compressed images that only have 50 percent of the principle components and not get a large performance hit. 
+%\section{Experiences}
 
-Also the slight architecture change of doubling the scales did not result in better performance. This means that increasing the anchor box sizes did not result in better performance. Further analysis could be done with other parameters to change anchor box sizes however we did not have more time to do further experiments. 
+%\subsection{Challenges}
 
-\subsection{Overfitting and Generalization}
+%We first proposed a group project on detecting 3D objects from point cloud data. It was obvious to us that the topic was a hot research area with the motivation of self-driving applications at the wheel. However, once the team became hands-on with the point cloud data, it became apparent that interpretability and specialized tools required to interpret sparse point cloud data was not as natural as typical camera images. We then changed topics to more relatable material covered in class such as CNNs and Transformers from NLP while staying consistent with object detection.
 
-One of the problems we encountered is our inability to extract the validation losses from the training results. Therefore we had to look to other metrics to find if we are not over fitting and are generalizing well. One metric we looked at is training accuracy and the validation bbox average precision. We found that for all Faster RCNN cases both metrics are increasing therefore we can say that for the experiments on Faster RCNN we are not over-fitting. 
+%Whether processing point cloud data or camera images with recent methods, computational resources such as access to enterprise GPUs would always prove to be a challenge. Training on large data sets requires large batch sizes affecting training time and model performance.
 
-When exposed to new data in the validation set, the Swin Transformer is able to perform better overtime when measuring mAP bbox. Overfitting is not apparent.
+%Finding the right data set was also a challenge. Initially we picked the Kitti\cite{geiger2012we} data set because it's data was focused on autonomous driving and have viewpoints from the car. Also it seemed compatible with Faster R-CNN. However we later found that it did not have the annotations needed for Swin implementation and we had to pivot. 
 
-\includegraphics[width=0.8\linewidth]{docs/latex/images/brandon/swin_val_loss_bbox.png}
-%\caption{Swin Transformer generalization}
+%\subsection{Team Achievements}
 
-\subsection{Model Performance and Complexity}
-
-One of the constraints one has to consider when deploying a model into production is scalability. At max performance, how well does a model perform? Each model is evaluated on how many floating point operations required for a single forward pass measured in Floating Point Ops per Second (FLOPS). Higher values of FLOPS means the model is slower and has a lower throughput. The number of parameters, in millions (M), is also listed. This metric is useful for practitioners interested in models that can fit into low memory environments such as edge computing applications and robotics. Lastly we provide Frames Per Second (FPS) where each model is evaluated on how many images it can on average process of size 1280x720 pixels which is the common 720p standard high-definition display resolution.
-
-\begin{table}[hbt!]
-\begin{center}
-\scalebox{0.9}{
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-Backbone & Method & FLOPS (G) & Params (M) & FPS \\
-\hline\hline
-Swin-T   & Mask-RNN & 263 & 48 & 23.8 \\
-CNN   & Faster-RCNN & 202 & 41 & 15.4 \\
-\hline
-\end{tabular}
-}
-\end{center}
-\caption{Model performance and complexity with 720p images}
-\end{table}
-
-As one can see, there is a performance gap between the Swin-T Mask-RNN and Faster-RCNN model. There appears to be a correlation between FLOPS and number of parameters. This makes sense intuitively that a larger complex model implies that there are more floating operations to perform. What is surprising is that the Swin-T model is able to process more images per second than the Faster-RCNN model.
-
-\section{Experiences}
-
-\subsection{Challenges}
-
-We first proposed a group project on detecting 3D objects from point cloud data. It was obvious to us that the topic was a hot research area with the motivation of self-driving applications at the wheel. However, once the team became hands-on with the point cloud data, it became apparent that interprability and specialized tools required to interpret sparse point cloud data was not as natural as typical camera images. We then changed topics to more relatable material covered in class such as CNNs and transforms from NLP while staying consistent with object detection.
-
-Finding the right dataset was also a challenge. Initially we picked the kitti dataset because it's data was focused on autonomous driving and have viewpoints from the car. Also it seemed compatible with Faster RCNN. However we later found that it did not have the annotations needed for Swin implementation and we had to pivot. 
-
-\subsection{New Challenges}
-
-Whether processing point cloud data or camera images with recent methods, computational resources such as access to enterprise GPUs would always prove to be a challenge. Training on large datasets requires large batch sizes affecting training time and model performance.
-
-\subsection{Team Achievements}
-
-Although the computational resources were out of reach for the team using Colab and local GPU resources, we effectively learned about bleeding edge research topics in computer vision that are actively being improved and published on. We were able to do sensitivity studies on compressed images and do some trials and experimentation's with some of the most advanced methods currently in use. For example, ViTs have a new workshop at CVPR 2022 since their introduction in 2020. Also the Swin Transformer won the ICCV 2021 best paper award. There has also been a published Swin Transformer v2 and complementary SimMIM that have been accepted for ICCV 2022. We see this exposure as an advantage for collaboration and future work with prospective research teams from the private and public sectors.
+%Although the computational resources were out of reach for the team using Colab and local GPU resources, we effectively learned about bleeding edge research topics in computer vision that are actively being improved and published on. We were able to do sensitivity studies on compressed images and do some trials and experimentation's with some of the most advanced methods currently in use. We see this exposure as an advantage for collaboration with prospective research teams from the private and public sectors.
 
 
 %-------------------------------------------------------------------------
@@ -368,7 +421,7 @@ Although the computational resources were out of reach for the team using Colab 
 
 %(5 points) Finally, points will be distributed based on your understanding of how your project relates to Deep Learning. Here are some questions to think about: 
 
-%What was the structure of your problem? How did the structure of your model reflect the structure of your problem? 
+%What was the structure of your problem? How did the structure of your model reflect the structure of your problem?
 
 %What parts of your model had learned parameters (e.g., convolution layers) and what parts did not (e.g., post-processing classifier probabilities into decisions)? 
 
@@ -389,9 +442,9 @@ Although the computational resources were out of reach for the team using Colab 
 %-------------------------------------------------------------------------
 \section{Future Work}
 
-An on-going debate in neural architecture design revolves around balancing width and depth. The first successful neural networks on Imagenet were considered deep in 2014 standards\cite{krizhevsky2012imagenet}\cite{simonyan2014very}. With the introduction of ResNets\cite{he2016deep}\cite{he2016identity} optimization with deep layers suffered due to the residual connections. This deep optimization problem motivated researchers to analyze the trade-offs associated with depth and width\cite{ding2021repvgg}\cite{huang2016deep}\cite{zagoruyko2016wide}. 
+%An on-going debate in neural architecture design revolves around balancing width and depth. The first successful neural networks on Imagenet were considered deep in 2014 standards\cite{krizhevsky2012imagenet}\cite{simonyan2014very}. With the introduction of ResNets\cite{he2016deep}\cite{he2016identity} optimization with deep layers suffered due to the residual connections. This deep optimization problem motivated researchers to analyze the trade-offs associated with depth and width\cite{ding2021repvgg}\cite{huang2016deep}\cite{zagoruyko2016wide}. 
 
-There are a number of published works interested in shallower neural networks\cite{goyal2021non}\cite{zagoruyko2016wide} for reasons such as lower latency to easier optimization. One of the simple proposed methods advocates parallel vision transformers\cite{touvron2022three} that takes a sequential architecture and reorganizes the blocks by pairs. The overall result is an architecture that is wider and shallower which is an effective design for more parallel processing, easing optimization, and the reduction of latency dependent on the implementation.
+%There are a number of published works interested in shallower neural networks\cite{goyal2021non}\cite{zagoruyko2016wide} for reasons such as lower latency to easier optimization. One of the simple proposed methods advocates parallel vision transformers\cite{touvron2022three} that takes a sequential architecture and reorganizes the blocks by pairs. The overall result is an architecture that is wider and shallower which is an effective design for more parallel processing, easing optimization, and the reduction of latency dependent on the implementation.
 
 With the rise of attention-based neural networks, wider architectures is once again being revisited\cite{goyal2021non}. In the work "Non-deep Networks", an architecture with several parallel branches is proposed that leads to more complex design. In the work, "Three things everyone should know about Vision Transformers", the authors propose three methods for ViTs that are much simpler and flexible alternative methods: parallel blocks, fine-tuning, patch pre-processing\cite{touvron2022three}.
 
@@ -400,7 +453,6 @@ Future work motivated by the implementation of these three methods mechanisms in
 %-------------------------------------------------------------------------
 
 \section{Work Division}
-%TODO this freaking table will not go where it is expected.
 
 \begin{table}[h!]
 \begin{center}
@@ -411,7 +463,7 @@ Student Name & Impl/Experiments/Analysis \\
 \hline\hline
 Yuemin Zhou & Faster R-CNN   \\
 Brandon Sheffield & Swin Transformer  \\
-Saheon Kim & Mask R-CNN  \\
+Saheon Kim & RegNet  \\
 \hline
 \end{tabular}
 }%scalebox
@@ -419,6 +471,7 @@ Saheon Kim & Mask R-CNN  \\
 \caption{Contributions of team members.}
 \label{tab:contributions}
 \end{table}
+
 
 %References
 {\small
@@ -431,7 +484,6 @@ Saheon Kim & Mask R-CNN  \\
 \label{sec:appendix}
 
 \section{Existing Code and Models} \label{existingCodeSection}
-
 
 \begin{table}[h!]
 \begin{center}
@@ -453,7 +505,6 @@ ViT Gradcam & https://github.com/jacobgil/pytorch-grad-cam \\
 \clearpage
 
 \section{Proposed Swin Transformer Enhancement} \label{proposedSwin}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Since the introduction of the Swin Transformer in 2020, there has been improvements in regards to scaling up it's capacity and resolution\cite{liu2021swinV2}. Additionally, there have been self-supervised learn methods proposed such as MoBY\cite{xie2021moby} which combines MoCo\cite{he2020momentum}\cite{chen2020improved} with BYOL\cite{grill2020bootstrap} and SimMIM\cite{xie2021simmim} where they use the Swin Transformer backbone.
@@ -487,7 +538,6 @@ x_{l+1} = x_{l} + mhsa_{l,1}(x_l) + mhsa_{l,2}(x_l)
 \begin{equation}
 x_{l+2} = x_{l+1} + ffn_{l,1}(x_l+1) + ffn_{l,2}(x_{l+1})
 \end{equation}
-
 
 The two parallel operations effectively result in twice the amount of processing that is performed in parallel while reducing the number of layers by two.
 
@@ -578,6 +628,8 @@ x_{l+1} = x_{l} + mhsa_{l,1}(x_l) + mhsa_{l,2}(x_l)
 x_{l+2} = x_{l+1} + ffn_{l,1}(x_l+1) + ffn_{l,2}(x_{l+1})
 \end{equation}
 
+The following diagram shows the newly paralleled blocks for the Swin Transformer.
+
 %\caption{Swin Transformer Parallel Blocks}
 \includegraphics[width=0.8\linewidth]{docs/latex/images/brandon/MSA-Swin.png}
 %\caption{}
@@ -588,16 +640,104 @@ x_{l+2} = x_{l+1} + ffn_{l,1}(x_l+1) + ffn_{l,2}(x_{l+1})
 
 Visual Transformers are sensitive to the amount of data used to train them. This can be seen when the size of the models grow. The gradients can be visualized of where the network pays the most attention to in the following series of images.
 
+\scalebox{0.6}{
 \includegraphics[width=0.8\linewidth]{docs/latex/images/brandon/gradcam_tiny_swin.png}
 %\caption{GradCam Swin Transformer Tiny trained on ImageNet1K}
+}
 
+\scalebox{0.6}{
 \includegraphics[width=0.8\linewidth]{docs/latex/images/brandon/gradcam_base_swin.png}
 %\caption{GradCam Swin Transformer Base trained on ImageNet1K}
+}
 
+\scalebox{0.6}{
 \includegraphics[width=0.8\linewidth]{docs/latex/images/brandon/gradcam_large_swin_patch4_window7_224_in22k.png}
 %\caption{Gradcam Swin Transformer Large trained on ImageNet22K}
+}
 
+\clearpage
+\section{additional charts for Faster R-CNN image compression experiments.}
 
+\begin{figure}[ht]
+    \centering
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/base_results_train_acc.png} }}
+    \qquad
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/base_results_val.png} }}
+    \caption{Faster R-CNN baseline training accuracy and validation accuracy}
+    \label{fig:example1}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/base_50_results_train_acc.png} }}
+    \qquad
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/base_50_results_val.png} }}
+    \caption{Faster R-CNN 50 percent PCA components training accuracy and validation accuracy}
+    \label{fig:example2}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/base_25_results_train_acc.png} }}
+    \qquad
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/base_25_results_val.png} }}
+    \caption{Faster R-CNN 25 percent PCA components training accuracy and validation accuracy}
+    \label{fig:example3}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/pre_base_results_train_acc.png} }}
+    \qquad
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/pre_base_results_val.png} }}
+    \caption{Faster R-CNN pre-trained training accuracy and validation accuracy}
+    \label{fig:example4}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/pre_50_results_train_acc.png} }}
+    \qquad
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/pre_50_results_val.png} }}
+    \caption{Faster R-CNN pre-trained 50 percent PCA components training accuracy and validation accuracy}
+    \label{fig:example5}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/pre_25_results_train_acc.png} }}
+    \qquad
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/pre_25_results_val.png} }}
+    \caption{Faster R-CNN pre-trained 25 percent PCA components training accuracy and validation accuracy}
+    \label{fig:example6}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/edit_base_results_train_acc.png} }}
+    \qquad
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/edit_base_results_val.png} }}
+    \caption{Faster R-CNN architecture edit training accuracy and validation accuracy}
+    \label{fig:example7}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/edit_50_results_train_acc.png} }}
+    \qquad
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/edit_50_results_val.png} }}
+    \caption{Faster R-CNN architecture edit 50 percent PCA components training accuracy and validation accuracy}
+    \label{fig:example8}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/edit_25_results_train_acc.png} }}
+    \qquad
+    {{\includegraphics[width=3cm]{docs/latex/images/larry/edit_25_results_val.png} }}
+    \caption{Faster R-CNN architecture edit 25 percent PCA components training accuracy and validation accuracy}
+    \label{fig:example9}
+\end{figure}
 
 \end{document}
 
