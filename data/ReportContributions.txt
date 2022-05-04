@@ -1,0 +1,1045 @@
+Createdsrc/Yuemin/testing Kitti.ipynb
+Createdsrc/Yuemin/coco_test_trials2.ipynb
+Createdsrc/Yuemin/kitti_test_trials2.ipynb
+Createdsrc/Brandon/SwinTransformer_Experiments.ipynb
+Createdsrc/Yuemin/coco_test_trials.ipynb
+Createdsrc/Yuemin/coco_test6.ipynb
+Createdsrc/Yuemin/coco_test9.ipynb
+Createdsrc/Yuemin/kitti_test_trials.ipynb
+Createdsrc/Yuemin/coco_test8.ipynb
+Createdsrc/Saheon/Regnet.ipynb
+Createdsrc/Yuemin/coco_test7.ipynb
+Createdsrc/Brandon/SwinTransformer_MaskedRCNN.ipynb
+Createdsrc/Yuemin/coco_annotations_test3.ipynb
+Createdsrc/Yuemin/coco_annotations_test2.ipynb
+Createdsrc/Yuemin/coco_annotations_test5.ipynb
+Createdsrc/Yuemin/coco_annotations_test4.ipynb
+Createdsrc/Yuemin/coco_annotations_2.ipynb
+Createdsrc/Yuemin/coco_annotations_test.ipynb
+Createdsrc/Yuemin/coco_annotations.ipynb
+Createdsrc/Yuemin/Trials with coco.ipynb
+Createdsrc/Yuemin/PCA_gettingdata.ipynb
+Createdsrc/Yuemin/Object3D detection.ipynb
+Createdsrc/Yuemin/PCA_compression2(1).ipynb
+Createdsrc/Yuemin/PCA_compression2.ipynb
+2:25 pm • Anonymous
+Edited README.md
+2:25 pm • Anonymous
+DeletedSwinTransformer_MaskedRCNN.ipynb
+DeletedSwinTransformer_Experiments.ipynb
+DeletedDockerfile.HuggingFace
+2:25 pm • Anonymous
+Yesterday
+Edited docs/latex/egpaper_for_review.tex
+7:58 pm • lzhou519 Eric Kim You
+Edited docs/latex/egpaper_for_review.tex
+7:53 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+7:46 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+7:38 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+7:33 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:25 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+7:20 pm • lzhou519 You
+Edited docs/latex/egpaper_for_review.tex
+7:13 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+7:08 pm • lzhou519 You
+Edited docs/latex/egpaper_for_review.tex
+7:01 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:55 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:50 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:45 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:37 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:32 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:27 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+6:21 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:16 pm • You
+Mon, 2nd May 22
+Edited docs/latex/egpaper_for_review.tex
+11:14 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+11:09 pm • Eric Kim lzhou519 You
+Edited docs/latex/egpaper_for_review.tex
+11:03 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+10:58 pm • YouEric Kim lzhou519
+Edited docs/latex/egpaper_for_review.tex
+10:53 pm • lzhou519 YouEric Kim
+Edited docs/latex/egpaper_for_review.tex
+10:48 pm • YouEric Kim lzhou519
+Edited docs/latex/egpaper_for_review.tex
+10:42 pm • lzhou519 Eric Kim You
+Edited docs/latex/egpaper_for_review.tex
+10:37 pm • YouEric Kim
+Edited docs/latex/egpaper_for_review.tex
+10:31 pm • Eric Kim You
+Edited docs/latex/egpaper_for_review.tex
+10:26 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+10:20 pm • Eric Kim You
+Createddocs/latex/images/brandon/swin_train_acc.png
+10:17 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:16 pm • Eric Kim
+Renameddocs/latex/base val bbox map.png → docs/latex/images/eric/base val bbox map.png
+Renameddocs/latex/base train acc.png → docs/latex/images/eric/base train acc.png
+Createddocs/latex/base val bbox map.png
+Createddocs/latex/base train acc.png
+10:14 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+10:13 pm • lzhou519 Eric Kim You
+Edited docs/latex/egpaper_for_review.tex
+10:08 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:59 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:40 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+9:35 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+9:28 pm • Eric Kim lzhou519
+Edited docs/latex/egpaper_for_review.tex
+9:20 pm • lzhou519 Eric Kim You
+Edited docs/latex/egpaper_for_review.tex
+9:15 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+9:09 pm • lzhou519 You
+Edited docs/latex/egpaper_for_review.tex
+9:04 pm • YouEric Kim
+Edited docs/latex/egpaper_for_review.tex
+8:58 pm • lzhou519 You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+8:52 pm • lzhou519 You
+Edited docs/latex/egpaper_for_review.tex
+8:46 pm • lzhou519 You
+Createddocs/latex/images/larry/base_25_results_train_acc.PNG
+Createddocs/latex/images/larry/pre_50_results_train_acc.PNG
+Createddocs/latex/images/larry/pre_25_results_train_acc.PNG
+Createddocs/latex/images/larry/edit_base_results_train_acc.PNG
+Createddocs/latex/images/larry/edit_50_results_train_acc.PNG
+Createddocs/latex/images/larry/edit_25_results_train_acc.PNG
+Createddocs/latex/images/larry/base_results_train_acc.PNG
+Createddocs/latex/images/larry/base_50_results_train_acc.PNG
+8:43 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+8:41 pm • YouEric Kim
+Edited docs/latex/egpaper_for_review.tex
+8:35 pm • Eric Kim You
+Edited docs/latex/egpaper_for_review.tex
+8:29 pm • Youlzhou519
+Createddocs/latex/images/larry/pre_base_results_train_acc.PNG
+8:28 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+8:27 pm • Youlzhou519
+Createddocs/latex/images/larry/pre_base_results_loss2.PNG
+8:23 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+8:23 pm • You
+Edited docs/latex/egpaper_for_review.tex
+8:17 pm • You
+Edited docs/latex/egpaper_for_review.tex
+8:12 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+8:06 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+7:59 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+7:54 pm • lzhou519 Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+7:47 pm • Eric Kim lzhou519
+Edited docs/latex/egpaper_for_review.tex
+7:42 pm • lzhou519 YouEric Kim
+Edited docs/latex/egpaper_for_review.tex
+7:37 pm • lzhou519 Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+7:36 pm • lzhou519 Eric Kim You
+Edited docs/latex/egpaper_for_review.tex
+7:30 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:24 pm • Eric Kim Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+7:18 pm • lzhou519 Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+7:08 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+6:56 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:51 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:46 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:41 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:35 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:30 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:25 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+6:18 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:08 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:03 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:51 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+5:33 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+5:20 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+5:12 pm • Eric Kim
+Renameddocs/latex/regnetstruct.png → docs/latex/images/eric/regnetstruct.png
+5:12 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+5:11 pm • Eric Kim
+Createddocs/latex/regnetstruct.png
+5:11 pm • Eric Kim
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+5:10 pm • Eric Kim
+Createddocs/latex/images/eric/xblock.png
+5:06 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+5:06 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+5:00 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+4:54 pm • Eric Kim lzhou519
+Edited docs/latex/egpaper_for_review.tex
+4:49 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+4:42 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+4:36 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+4:29 pm • Eric Kim
+Createddocs/latex/images/eric/errordist.png
+4:26 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+4:24 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+4:18 pm • Eric Kim
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+4:11 pm • Eric Kim
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+4:05 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+4:00 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+3:54 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+3:48 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+1:55 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:50 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:43 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:38 pm • YouEric Kim
+Edited docs/latex/egpaper_for_review.tex
+1:33 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:27 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:22 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:17 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:12 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:06 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:22 am • Eric Kim
+Sun, 1st May 22
+Edited docs/latex/egpaper_for_review.tex
+10:46 pm • You
+CreatedSwinTransformer_Experiments.ipynb
+CreatedSwinTransformer_MaskedRCNN.ipynb
+Createdconfigs/trunc_coco_instance.py
+Createdtrunc_finetuned_workdir/trunc_mask_rcnn_swin-t-p4-w7_fpn_1x_coco.py
+Createdtrunc_finetuned_workdir/eval_20220429_220232.json
+CreatedDockerfile.HuggingFace
+Createdtrunc_finetuned_workdir/20220429_205127.log.json
+Createdconfigs/schedule_1x.py
+CreatedDockerfile
+Createdconfigs/trunc_mask_rcnn_r50_fpn.py
+Createdconfigs/trunc_mask_rcnn_swin-t-p4-w7_fpn_1x_coco.py
+Createdconfigs/default_runtime.py
+10:43 pm • Anonymous
+Edited README.md
+10:43 pm • Anonymous
+Edited docs/latex/egpaper_for_review.tex
+10:36 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:31 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:25 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:20 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:13 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:08 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:03 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:58 pm • YouEric Kim
+Edited docs/latex/egpaper_for_review.tex
+9:52 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:45 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:27 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:21 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:11 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+9:01 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+8:25 pm • Eric Kim
+Edited docs/latex/egpaper_for_review.tex
+8:07 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+7:13 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+7:07 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:01 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:56 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:50 pm • lzhou519 You
+Edited docs/latex/egpaper_for_review.tex
+6:44 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+6:39 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+6:34 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+6:29 pm • lzhou519 You
+Edited docs/latex/egpaper_for_review.tex
+6:21 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+6:16 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:11 pm • lzhou519 You
+Edited docs/latex/egpaper_for_review.tex
+6:04 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:57 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:52 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+5:47 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+5:42 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+5:37 pm • lzhou519 You
+Edited docs/latex/egpaper_for_review.tex
+5:31 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+5:20 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:15 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:09 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:03 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+4:57 pm • lzhou519 You
+Edited docs/latex/egpaper_for_review.tex
+4:38 pm • lzhou519
+Createddocs/latex/images/larry/pre_50_results_val.PNG
+Createddocs/latex/images/larry/pre_25_results_val.PNG
+Createddocs/latex/images/larry/edit_base_results_val.PNG
+Createddocs/latex/images/larry/edit_50_results_val.PNG
+Createddocs/latex/images/larry/edit_25_results_val.PNG
+Createddocs/latex/images/larry/base_results_val.PNG
+Createddocs/latex/images/larry/base_50_results_val.PNG
+Createddocs/latex/images/larry/base_25_results_val.PNG
+Createddocs/latex/images/larry/pre_base_results_val.PNG
+4:29 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+4:25 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:20 pm • You
+Createddocs/latex/images/larry/edit_25_results_loss.PNG
+Createddocs/latex/images/larry/base_results_loss.PNG
+Createddocs/latex/images/larry/base_50_results_loss.PNG
+Createddocs/latex/images/larry/base_25_results_loss.PNG
+Createddocs/latex/images/larry/pre_base_results_loss.PNG
+Createddocs/latex/images/larry/pre_50_results_loss.PNG
+Createddocs/latex/images/larry/pre_25_results_loss.PNG
+Createddocs/latex/images/larry/edit_base_results_loss.PNG
+4:19 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+4:19 pm • You
+Createddocs/latex/images/larry/edit_50_results_loss.PNG
+4:19 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+4:19 pm • You
+Deleteddocs/latex/images/larry/pre_base_results.PNG
+Deleteddocs/latex/images/larry/pre_50_results.PNG
+Deleteddocs/latex/images/larry/pre_25_results.PNG
+Deleteddocs/latex/images/larry/edit_base_results.PNG
+Deleteddocs/latex/images/larry/edit_50_results.PNG
+Deleteddocs/latex/images/larry/edit_25_results.PNG
+Deleteddocs/latex/images/larry/base_results.PNG
+4:19 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+4:18 pm • You
+Deleteddocs/latex/images/larry/base_50_results.PNG
+4:18 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+4:18 pm • You
+Deleteddocs/latex/images/larry/base_25_results.PNG
+4:18 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+4:18 pm • You
+Createddocs/latex/images/larry/pre_50_results.PNG
+Createddocs/latex/images/larry/pre_25_results.PNG
+Createddocs/latex/images/larry/edit_base_results.PNG
+Createddocs/latex/images/larry/edit_50_results.PNG
+Createddocs/latex/images/larry/edit_25_results.PNG
+Createddocs/latex/images/larry/base_results.PNG
+Createddocs/latex/images/larry/base_50_results.PNG
+Createddocs/latex/images/larry/base_25_results.PNG
+Createddocs/latex/images/larry/pre_base_results.PNG
+4:14 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+4:11 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:06 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+4:00 pm • YouEric Kim
+Edited docs/latex/egpaper_for_review.tex
+3:55 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+3:49 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+3:44 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:39 pm • YouEric Kim
+Edited docs/latex/egpaper_for_review.tex
+3:30 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:24 pm • Youlzhou519
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+3:19 pm • lzhou519 You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+3:14 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+3:06 pm • lzhou519 You
+Createddocs/latex/images/brandon/gradcam_tiny_swin.png
+Createddocs/latex/images/brandon/gradcam_large_swin_patch4_window7_224_in22k.png
+Createddocs/latex/images/brandon/gradcam_base_swin.png
+3:03 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:00 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:54 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+2:49 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+2:42 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+2:34 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+2:34 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+2:28 pm • lzhou519 You
+Edited docs/latex/egpaper_for_review.tex
+2:22 pm • Youlzhou519
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+2:09 pm • Eric Kim lzhou519
+Sat, 30th Apr 22
+Edited docs/latex/egpaper_for_review.tex
+11:55 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:48 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:04 pm • You
+Edited docs/latex/egpaper_for_review.tex
+8:59 pm • You
+Edited docs/latex/egpaper_for_review.tex
+8:45 pm • You
+Renameddocs/latex/images/ViT-progression.png → docs/latex/images/brandon/ViT-progression.png
+Renameddocs/latex/images/SwinVsViT.png → docs/latex/images/brandon/SwinVsViT.png
+Renameddocs/latex/images/swin_val_loss_bbox.png → docs/latex/images/brandon/swin_val_loss_bbox.png
+Renameddocs/latex/images/Swin_train_loss.png → docs/latex/images/brandon/Swin_train_loss.png
+Renameddocs/latex/images/ObjectDetection.png → docs/latex/images/brandon/ObjectDetection.png
+Renameddocs/latex/images/obj.png → docs/latex/images/brandon/obj.png
+Renameddocs/latex/images/MSA-Swin.png → docs/latex/images/brandon/MSA-Swin.png
+Renameddocs/latex/images/MHSA-Original.png → docs/latex/images/brandon/MHSA-Original.png
+Renameddocs/latex/images/coco17_val_trunc.png → docs/latex/images/brandon/coco17_val_trunc.png
+Renameddocs/latex/images/coco17_train.png → docs/latex/images/brandon/coco17_train.png
+Renameddocs/latex/images/coco17_train_trunc.png → docs/latex/images/brandon/coco17_train_trunc.png
+Createddocs/latex/images/brandon/Architecture.png
+8:42 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:48 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:41 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:34 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:24 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:18 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:13 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:08 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:03 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:57 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+6:52 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:47 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:41 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:36 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:30 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:25 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+6:20 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:14 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:09 pm • You
+Edited docs/latex/egpaper_for_review.tex
+6:04 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:57 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:46 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:40 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+5:35 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:29 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+5:20 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:13 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:08 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:03 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:57 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+4:33 pm • You
+Edited docs/latex/egpaper_for_review.tex
+11:19 am • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+11:12 am • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+11:06 am • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+10:03 am • lzhou519
+Fri, 29th Apr 22
+Edited docs/latex/egpaper_for_review.tex
+11:39 pm • You
+Edited docs/latex/egpaper_for_review.tex
+11:34 pm • You
+Edited docs/latex/egpaper_for_review.tex
+11:28 pm • You
+Edited docs/latex/egpaper_for_review.tex
+11:22 pm • You
+Createddocs/latex/images/swin_val_loss_bbox.png
+11:21 pm • You
+Edited docs/latex/egpaper_for_review.tex
+11:20 pm • You
+Createddocs/latex/images/Swin_train_loss.png
+11:19 pm • You
+Edited docs/latex/egpaper_for_review.tex
+11:15 pm • You
+Edited docs/latex/egpaper_for_review.tex
+11:10 pm • You
+Edited docs/latex/egpaper_for_review.tex
+11:03 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:53 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:48 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:29 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:24 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:10 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:54 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:41 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:33 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:23 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:18 pm • You
+Edited docs/latex/egpaper_for_review.tex
+9:09 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:12 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+3:48 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:41 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:36 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:31 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+3:26 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:20 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:13 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+3:07 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:02 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:57 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:52 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:46 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:41 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:35 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:29 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:24 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:19 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:13 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:08 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:41 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:05 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:44 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:35 pm • You
+Thu, 28th Apr 22
+Edited docs/latex/egpaper_for_review.tex
+6:41 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+6:36 pm • You
+Edited docs/latex/egbib.bib
+6:26 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:19 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:13 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:07 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:02 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:55 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:50 pm • Youlzhou519
+Edited docs/latex/egpaper_for_review.tex
+3:43 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:37 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:32 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:24 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:19 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:27 pm • You
+Createddocs/latex/images/coco17_train.png
+1:23 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:17 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:00 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:53 pm • You
+Createddocs/latex/images/coco17_val_trunc.png
+Deleteddocs/latex/images/coco17_train_trunc..png
+12:53 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:51 pm • You
+Createddocs/latex/images/coco17_train_trunc.png
+Createddocs/latex/images/coco17_train_trunc..png
+12:46 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:24 pm • You
+Wed, 27th Apr 22
+Edited docs/latex/egpaper_for_review.tex
+9:47 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+9:22 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+9:14 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+8:51 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+8:42 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+8:34 pm • lzhou519
+Edited docs/latex/egpaper_for_review.tex
+8:24 pm • lzhou519
+Tue, 26th Apr 22
+Edited docs/latex/egpaper_for_review.tex
+3:25 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:20 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:13 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:26 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:18 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:13 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:08 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:02 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:57 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:52 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:46 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:41 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:35 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:30 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:24 pm • You
+Deleteddata/deleteme.txt
+12:13 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:12 pm • You
+Createddocs/latex/images/MHSA-Original.png
+Createddocs/latex/images/MSA-Swin.png
+12:11 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:09 pm • You
+Edited docs/latex/egpaper_for_review.tex
+11:14 am • You
+Edited docs/latex/egpaper_for_review.tex
+11:09 am • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+11:03 am • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+10:58 am • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+10:52 am • You
+Edited docs/latex/egpaper_for_review.tex
+10:47 am • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+10:42 am • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+10:36 am • You
+Edited docs/latex/egpaper_for_review.tex
+10:16 am • You
+Edited docs/latex/egpaper_for_review.tex
+10:10 am • You
+Mon, 25th Apr 22
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+1:44 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+1:37 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:31 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:25 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:20 pm • You
+Createddocs/latex/images/ObjectDetection.png
+1:16 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:13 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:08 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:02 pm • You
+Edited docs/latex/egpaper_for_review.tex
+11:22 am • You
+Edited docs/latex/egpaper_for_review.tex
+11:16 am • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+10:58 am • You
+Edited docs/latex/egpaper_for_review.tex
+10:50 am • You
+Edited docs/latex/egpaper_for_review.tex
+10:44 am • You
+Edited docs/latex/egpaper_for_review.tex
+10:35 am • You
+Createddocs/latex/images/ViT-progression.png
+10:30 am • You
+Edited docs/latex/egpaper_for_review.tex
+9:52 am • You
+Sun, 24th Apr 22
+Edited docs/latex/egpaper_for_review.tex
+4:48 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:43 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:37 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:31 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:26 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:20 pm • You
+Edited docs/latex/egbib.bib
+4:14 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:00 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:55 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:49 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+12:44 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:38 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:10 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:04 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+11:58 am • You
+Edited docs/latex/egpaper_for_review.tex
+11:53 am • You
+Createddocs/latex/images/SwinVsViT.png
+11:52 am • You
+Edited docs/latex/egpaper_for_review.tex
+11:50 am • You
+Edited docs/latex/egbib.bib
+11:44 am • You
+Sat, 23rd Apr 22
+Edited docs/latex/egbib.bib
+10:28 pm • You
+Edited docs/latex/egpaper_for_review.tex
+10:16 pm • You
+Fri, 22nd Apr 22
+Edited docs/latex/egbib.bib
+11:51 am • You
+Edited docs/latex/egpaper_for_review.tex
+11:19 am • You
+Edited docs/latex/egpaper_for_review.tex
+11:10 am • You
+Edited docs/latex/egpaper_for_review.tex
+11:04 am • You
+Edited docs/latex/egpaper_for_review.tex
+10:58 am • You
+Wed, 20th Apr 22
+Edited docs/latex/egpaper_for_review.tex
+11:19 am • You
+Edited docs/latex/egpaper_for_review.tex
+11:14 am • You
+Edited docs/latex/egpaper_for_review.tex
+10:38 am • You
+Edited docs/latex/egpaper_for_review.tex
+10:28 am • You
+Edited docs/latex/egpaper_for_review.tex
+10:22 am • You
+Renameddocs/latex/images/objdet-boxAP.png → docs/latex/images/obj.png
+10:21 am • You
+Edited docs/latex/egpaper_for_review.tex
+10:21 am • You
+Renameddocs/latex/images/obj-detection-coco-test-dev-chart-boxap.png → docs/latex/images/objdet-boxAP.png
+Createddocs/latex/images/obj-detection-coco-test-dev-chart-boxap.png
+10:18 am • You
+Edited docs/latex/egpaper_for_review.tex
+10:11 am • You
+Tue, 19th Apr 22
+Edited docs/latex/egpaper_for_review.tex
+11:15 pm • You
+Edited docs/latex/egpaper_for_review.tex
+11:03 pm • You
+Edited docs/latex/egpaper_for_review.tex
+5:37 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:42 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:28 pm • You
+Mon, 18th Apr 22
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+7:11 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:04 pm • You
+Edited docs/latex/egbib.bib
+3:59 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:02 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:57 pm • You
+Edited docs/latex/egpaper_for_review.tex
+1:52 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+1:42 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+1:37 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:58 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+12:46 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:41 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+12:36 pm • You
+Edited docs/latex/egpaper_for_review.tex
+12:29 pm • You
+Sat, 16th Apr 22
+Edited docs/latex/egpaper_for_review.tex
+3:18 pm • You
+Edited docs/latex/egpaper_for_review.tex
+2:59 pm • You
+Fri, 15th Apr 22
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+4:16 pm • You
+Edited docs/latex/egpaper_for_review.tex
+4:11 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:59 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+3:49 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+3:44 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+3:38 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:33 pm • You
+Edited docs/latex/egpaper_for_review.tex
+3:27 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+3:22 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+3:16 pm • You
+Edited docs/latex/egbib.bib
+Edited docs/latex/egpaper_for_review.tex
+3:10 pm • You
+Edited docs/latex/egpaper_for_review.tex
+11:50 am • You
+Edited docs/latex/egpaper_for_review.tex
+11:44 am • You
+Edited docs/latex/egpaper_for_review.tex
+11:39 am • You
+Wed, 13th Apr 22
+Edited docs/latex/egpaper_for_review.tex
+7:27 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:21 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:14 pm • You
+Edited docs/latex/egpaper_for_review.tex
+7:09 pm • You
+Edited docs/latex/egbib.bib
+10:54 am • You
+Mon, 11th Apr 22
+Edited docs/latex/egbib.bib
+8:37 pm • You
+Edited docs/latex/egbib.bib
+3:39 pm • You
+Edited docs/latex/egbib.bib
+3:34 pm • You
+Edited docs/latex/egbib.bib
+3:28 pm • You
+Edited docs/latex/egbib.bib
+2:34 pm • You
+Edited docs/latex/egbib.bib
+2:23 pm • You
+Sat, 9th Apr 22
+Edited docs/latex/egbib.bib
+9:04 pm • You
+Edited docs/latex/egbib.bib
+8:56 pm • You
+Edited docs/latex/egbib.bib
+8:50 pm • You
+Edited docs/latex/egbib.bib
+8:45 pm • You
+Edited docs/latex/egbib.bib
+8:37 pm • You
+Createddocs/latex/ieee_fullname.bst
+Createddocs/latex/eso-pic.sty
+Createddocs/latex/egpaper_for_review.tex
+Createddocs/latex/egpaper_for_review.pdf
+Createddocs/latex/egbib.bib
+Createddocs/latex/cvpr_eso.sty
+Createddocs/latex/cvpr.sty
+Createddocs/latex/README.txt
+Createddocs/Group_Project_Description.pdf
+Createddata/deleteme.txt
+CreatedREADME.md
